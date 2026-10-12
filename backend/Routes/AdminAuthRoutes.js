@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const AdminAuthController = require('../controllers/AdminAuthController');
-const validateRequest = require('../middlewares/ValidateRequest');
-const { validateAdminCredentialsPayload } = require('../validations/AdminAuthValidation');
-const verifyAdminToken = require('../middlewares/VerifyAdminToken');
+const AdminAuthController = require('../Controllers/AdminAuthController');
+const validateRequest = require('../Middlewares/ValidateRequest');
+const { validateAdminCredentialsPayload } = require('../Validations/AdminAuthValidation');
+const verifyAdminToken = require('../Middlewares/VerifyAdminToken');
 
 /**
  * Route: POST /api/admin/auth/create

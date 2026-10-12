@@ -1,23 +1,26 @@
-const AdminAuthService = require('../services/AdminAuthService');
+const AdminAuthService = require('../Services/AdminAuthService');
 
 /**
  * Controller: Handles creation of initial admin account via Postman.
+ * Expects { AdminID, Password }
  */
 const handleCreateAdmin = async (req, res, next) => {
   try {
-    const { adminId, password } = req.body;
-    const result = await AdminAuthService.createAdmin(adminId, password);
+    const { AdminID, Password } = req.body;
+    const result = await AdminAuthService.createAdmin(AdminID, Password);
 
     return res.status(201).json({
-      success: true,
-      message: 'Admin account successfully created with securely hashed password.',
-      data: result,
+      Success: true,
+      Message: 'Admin account successfully created with securely hashed password.',
+      Data: {
+        AdminID: result.AdminID,
+      },
     });
   } catch (error) {
     if (error.statusCode) {
       return res.status(error.statusCode).json({
-        success: false,
-        message: error.message,
+        Success: false,
+        Message: error.message,
       });
     }
     next(error);
@@ -26,22 +29,26 @@ const handleCreateAdmin = async (req, res, next) => {
 
 /**
  * Controller: Handles admin authentication and returns JWT token.
+ * Expects { AdminID, Password }
  */
 const handleLogin = async (req, res, next) => {
   try {
-    const { adminId, password } = req.body;
-    const result = await AdminAuthService.loginAdmin(adminId, password);
+    const { AdminID, Password } = req.body;
+    const result = await AdminAuthService.loginAdmin(AdminID, Password);
 
     return res.status(200).json({
-      success: true,
-      message: 'Authentication successful.',
-      data: result,
+      Success: true,
+      Message: 'Authentication successful.',
+      Data: {
+        Token: result.Token,
+        AdminID: result.AdminID,
+      },
     });
   } catch (error) {
     if (error.statusCode) {
       return res.status(error.statusCode).json({
-        success: false,
-        message: error.message,
+        Success: false,
+        Message: error.message,
       });
     }
     next(error);
@@ -52,13 +59,12 @@ const handleLogin = async (req, res, next) => {
  * Controller: Handles session verification for active JWT tokens.
  */
 const handleVerifySession = async (req, res) => {
-  // req.admin populated by verifyAdminToken middleware
   return res.status(200).json({
-    success: true,
-    valid: true,
-    message: 'Token is valid.',
-    admin: {
-      adminId: req.admin.adminId,
+    Success: true,
+    Valid: true,
+    Message: 'Token is valid.',
+    Admin: {
+      AdminID: req.admin.AdminID,
     },
   });
 };
@@ -68,8 +74,8 @@ const handleVerifySession = async (req, res) => {
  */
 const handleLogout = async (req, res) => {
   return res.status(200).json({
-    success: true,
-    message: 'Logged out successfully.',
+    Success: true,
+    Message: 'Logged out successfully.',
   });
 };
 

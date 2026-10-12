@@ -2,9 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-const connectDatabase = require('./config/Database');
-const adminAuthRoutes = require('./routes/AdminAuthRoutes');
-const errorHandler = require('./middlewares/ErrorHandler');
+const connectDatabase = require('./Config/Database');
+const adminAuthRoutes = require('./Routes/AdminAuthRoutes');
+const errorHandler = require('./Middlewares/ErrorHandler');
 
 const app = express();
 
@@ -41,9 +41,9 @@ app.use(express.urlencoded({ extended: true }));
 // 4. Healthcheck Endpoint (useful for Render deployment and monitoring)
 app.get('/api/health', (req, res) => {
   res.status(200).json({
-    status: 'online',
-    timestamp: new Date().toISOString(),
-    service: 'Jafar Backend API',
+    Status: 'online',
+    Timestamp: new Date().toISOString(),
+    Service: 'Jafar Backend API',
   });
 });
 

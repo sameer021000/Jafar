@@ -10,9 +10,9 @@ const validateRequest = (validationFn) => {
 
     if (!result.isValid) {
       return res.status(400).json({
-        success: false,
-        message: result.error || 'Validation failed.',
-        fieldErrors: result.fieldErrors || {},
+        Success: false,
+        Message: result.error || 'Validation failed.',
+        FieldErrors: result.fieldErrors || {},
       });
     }
 

@@ -3,19 +3,19 @@ const bcrypt = require('bcryptjs');
 
 /**
  * Admin Schema
- * Minimal schema containing only adminId and password with automatic bcrypt hashing.
+ * Minimal schema containing only AdminID and Password with automatic bcrypt hashing.
+ * AdminID is strictly case-sensitive.
  */
 const adminSchema = new mongoose.Schema(
   {
-    adminId: {
+    AdminID: {
       type: String,
-      required: [true, 'Admin ID is required.'],
+      required: [true, 'AdminID is required.'],
       unique: true,
       trim: true,
-      lowercase: true,
       index: true,
     },
-    password: {
+    Password: {
       type: String,
       required: [true, 'Password is required.'],
       select: false, // Prevents password hash from being included in standard queries
@@ -28,17 +28,17 @@ const adminSchema = new mongoose.Schema(
 );
 
 /**
- * Pre-save hook: Automatically hashes password with bcrypt before persisting to MongoDB Atlas.
- * In modern Mongoose, an async function should not accept or call next().
+ * Pre-save hook: Automatically hashes Password with bcrypt before persisting to MongoDB Atlas.
+ * Triggers only when the Password field has been modified or newly created.
  */
 adminSchema.pre('save', async function () {
-  if (!this.isModified('password')) {
+  if (!this.isModified('Password')) {
     return;
   }
 
   const saltRounds = 10;
   const salt = await bcrypt.genSalt(saltRounds);
-  this.password = await bcrypt.hash(this.password, salt);
+  this.Password = await bcrypt.hash(this.Password, salt);
 });
 
 const Admin = mongoose.model('AdminDetails', adminSchema);

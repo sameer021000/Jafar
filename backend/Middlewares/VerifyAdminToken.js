@@ -10,8 +10,8 @@ const verifyAdminToken = (req, res, next) => {
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({
-        success: false,
-        message: 'Access denied. No authentication token provided.',
+        Success: false,
+        Message: 'Access denied. No authentication token provided.',
       });
     }
 
@@ -21,25 +21,25 @@ const verifyAdminToken = (req, res, next) => {
     if (!jwtSecret) {
       console.error('JWT Configuration Error: JWT_SECRET is not configured in environment variables.');
       return res.status(500).json({
-        success: false,
-        message: 'Internal server authentication error.',
+        Success: false,
+        Message: 'Internal server authentication error.',
       });
     }
 
     const decoded = jwt.verify(token, jwtSecret);
-    req.admin = decoded; // Contains id, adminId
+    req.admin = decoded; // Contains id, AdminID
     next();
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
       return res.status(401).json({
-        success: false,
-        message: 'Authentication session expired. Please log in again.',
+        Success: false,
+        Message: 'Authentication session expired. Please log in again.',
       });
     }
 
     return res.status(401).json({
-      success: false,
-      message: 'Invalid authentication token.',
+      Success: false,
+      Message: 'Invalid authentication token.',
     });
   }
 };

@@ -7,10 +7,10 @@ const errorHandler = (err, req, res, next) => {
 
   // Mongoose duplicate key error (code 11000)
   if (err.code === 11000) {
-    const field = Object.keys(err.keyValue || {})[0] || 'field';
+    const field = Object.keys(err.keyValue || {})[0] || 'Field';
     return res.status(409).json({
-      success: false,
-      message: `An account with that ${field} already exists.`,
+      Success: false,
+      Message: `An account with that ${field} already exists.`,
     });
   }
 
@@ -21,16 +21,16 @@ const errorHandler = (err, req, res, next) => {
       fieldErrors[key] = err.errors[key].message;
     }
     return res.status(400).json({
-      success: false,
-      message: 'Validation failed.',
-      fieldErrors,
+      Success: false,
+      Message: 'Validation failed.',
+      FieldErrors: fieldErrors,
     });
   }
 
   // Generic internal server error
   return res.status(err.status || 500).json({
-    success: false,
-    message: err.message || 'An unexpected server error occurred.',
+    Success: false,
+    Message: err.message || 'An unexpected server error occurred.',
   });
 };
 
