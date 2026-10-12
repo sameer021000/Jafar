@@ -1,0 +1,81 @@
+
+# ============================================================
+# JAFAR MONOREPO - GITIGNORE
+# ============================================================
+
+# Dependencies
+**/node_modules/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Build output
+**/build/
+**/dist/
+**/out/
+
+# Deployment configuration
+**/.vercel/
+**/.netlify/
+
+# Testing and coverage
+**/coverage/
+**/.nyc_output/
+
+# Logs
+**/logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Caches and temporary files
+**/.cache/
+**/.parcel-cache/
+.eslintcache
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+.DS_Store?
+Thumbs.db
+Desktop.ini
+
+# IDE and editor files
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Package manager caches
+.npm/
+.yarn/cache/
+.pnpm-store/
+
+# Generated TypeScript files
+*.tsbuildinfo
+
+# Local databases and backups
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.bak
+
+# Private keys and certificates
+*.key
+*.pem
+*.p12
+*.pfx
+
+# ============================================================
+# END OF JAFAR MONOREPO GITIGNORE
+# ============================================================
