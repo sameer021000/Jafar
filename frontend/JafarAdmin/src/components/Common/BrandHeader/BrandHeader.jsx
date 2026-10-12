@@ -27,7 +27,7 @@ function BrandHeader() {
         </svg>
       </div>
 
-      <h1 className="brand-header__title">Jafar</h1>
+      <h1 className="brand-header__title">Jafar Works</h1>
 
       <div className="brand-header__tagline-wrapper">
         <span className="brand-header__accent-line" aria-hidden="true"></span>
