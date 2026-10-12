@@ -1,0 +1,11 @@
+.eye-toggle-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.eye-toggle-icon:hover {
+  color: var(--color-gold-hover);
+  transform: scale(1.08);
+}

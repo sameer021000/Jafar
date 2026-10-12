@@ -1,0 +1,129 @@
+/* ==========================================================================
+   JAFAR ADMIN — GLOBAL DESIGN TOKENS & RESET STYLES
+   Curated champagne gold, warm ivory, and deep charcoal theme
+   designed for imitation gold & gold-plated jewelry administration
+   ========================================================================== */
+
+:root {
+  /* Brand Primary & Gold Accents */
+  --color-gold-primary: #C5A059;
+  --color-gold-hover: #B38E46;
+  --color-gold-light: #F8F3EA;
+  --color-gold-subtle: #EEDBBA;
+  --color-gold-glow: rgba(197, 160, 89, 0.22);
+  --color-gold-border: rgba(197, 160, 89, 0.35);
+
+  /* Surfaces & Canvas */
+  --color-bg-main: #FAFAF7;
+  --color-bg-radial: radial-gradient(circle at 50% 20%, #FDFBF7 0%, #F5F1E8 100%);
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F5F3EC;
+  --color-surface-elevated: #FFFFFF;
+
+  /* Typography Colors */
+  --color-text-main: #1D1E20;
+  --color-text-secondary: #484A51;
+  --color-text-muted: #737682;
+  --color-text-inverse: #FFFFFF;
+
+  /* Border & Dividers */
+  --color-border: #E8E4DA;
+  --color-border-light: #F0ECE2;
+
+  /* Feedback Colors (Ruby Red & Deep Emerald) */
+  --color-error: #BA3329;
+  --color-error-hover: #9E2B23;
+  --color-error-bg: #FDF3F2;
+  --color-error-border: #F3C3C0;
+  
+  --color-success: #276E4F;
+  --color-success-bg: #F0F7F4;
+  --color-success-border: #BFDECFA;
+
+  --color-warning: #A16A1E;
+  --color-warning-bg: #FCF6EC;
+  --color-warning-border: #F1DCB2;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(29, 30, 32, 0.05), 0 1px 2px rgba(29, 30, 32, 0.03);
+  --shadow-md: 0 4px 14px rgba(29, 30, 32, 0.06), 0 1px 3px rgba(197, 160, 89, 0.08);
+  --shadow-lg: 0 12px 32px rgba(29, 30, 32, 0.08), 0 2px 6px rgba(197, 160, 89, 0.12);
+  --shadow-card: 0 8px 28px rgba(35, 30, 20, 0.07);
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-serif: "Cinzel", "Playfair Display", "Georgia", "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Custom Refined Text Selection */
+::selection {
+  background-color: var(--color-gold-subtle);
+  color: var(--color-text-main);
+}
+
+::-moz-selection {
+  background-color: var(--color-gold-subtle);
+  color: var(--color-text-main);
+}
+
+/* Accessible Focus Styling */
+:focus-visible {
+  outline: 2px solid var(--color-gold-primary);
+  outline-offset: 2px;
+}
+
+/* Interactive Element Typography Defaults */
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Media Query: Respect User's Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
