@@ -48,7 +48,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // 5. Mount Authentication Routes
-app.use('/api/admin/auth', adminAuthRoutes);
+app.use('/admin', adminAuthRoutes);
 
 // 6. Global Error Handling Middleware (must be registered after routes)
 app.use(errorHandler);

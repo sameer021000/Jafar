@@ -11,7 +11,7 @@ const verifyAdminToken = require('../Middlewares/VerifyAdminToken');
  * Purpose: Allows pushing initial credentials via Postman (triggers bcrypt pre-save hash).
  */
 router.post(
-  '/create',
+  '/createAdmin',
   validateRequest(validateAdminCredentialsPayload),
   AdminAuthController.handleCreateAdmin
 );
@@ -21,7 +21,7 @@ router.post(
  * Purpose: Authenticates admin credentials, verifies bcrypt hash, and issues JWT token.
  */
 router.post(
-  '/login',
+  '/adminLogin',
   validateRequest(validateAdminCredentialsPayload),
   AdminAuthController.handleLogin
 );
@@ -31,7 +31,7 @@ router.post(
  * Purpose: Checks if provided Bearer JWT token is valid (for session rehydration on reload).
  */
 router.get(
-  '/verify',
+  '/adminTokenVerification',
   verifyAdminToken,
   AdminAuthController.handleVerifySession
 );
@@ -41,7 +41,7 @@ router.get(
  * Purpose: Graceful session logout endpoint.
  */
 router.post(
-  '/logout',
+  '/adminLogout',
   AdminAuthController.handleLogout
 );
 
