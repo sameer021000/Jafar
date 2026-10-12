@@ -17,6 +17,8 @@ import './FormInput.css';
  * @param {boolean} [props.required] - If the field is required
  * @param {boolean} [props.disabled] - Disabled state
  * @param {string} [props.autoComplete] - Autocomplete attribute
+ * @param {boolean} [props.preventSpaces] - Whether to block space character input
+ * @param {function} [props.onKeyDown] - KeyDown handler
  */
 function FormInput({
   id,
@@ -25,13 +27,43 @@ function FormInput({
   value,
   onChange,
   onBlur,
+  onKeyDown,
   placeholder,
   error,
   required = false,
   disabled = false,
   autoComplete,
+  preventSpaces = false,
 }) {
   const errorId = error ? `${id}-error` : undefined;
+
+  const handleKeyDown = (e) => {
+    if (preventSpaces && (e.key === ' ' || e.code === 'Space')) {
+      e.preventDefault();
+    }
+    if (typeof onKeyDown === 'function') {
+      onKeyDown(e);
+    }
+  };
+
+  const handlePaste = (e) => {
+    if (preventSpaces) {
+      const pasteText = e.clipboardData.getData('text');
+      if (/\s/.test(pasteText)) {
+        e.preventDefault();
+        const sanitized = pasteText.replace(/\s+/g, '');
+        // Trigger synthetic or direct change with sanitized text
+        if (typeof onChange === 'function') {
+          onChange({
+            target: {
+              name: id,
+              value: (value || '') + sanitized,
+            },
+          });
+        }
+      }
+    }
+  };
 
   return (
     <div className="form-input-group">
@@ -50,6 +82,8 @@ function FormInput({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
           placeholder={placeholder}
           disabled={disabled}
           autoComplete={autoComplete}

@@ -111,6 +111,7 @@ function LoginScreen({ onLoginSuccess }) {
             required
             disabled={isSubmitting}
             autoComplete="username"
+            preventSpaces={true}
           />
 
           <PasswordInput
@@ -123,6 +124,7 @@ function LoginScreen({ onLoginSuccess }) {
             required
             disabled={isSubmitting}
             autoComplete="current-password"
+            preventSpaces={true}
           />
 
           <div className="login-card__actions">
