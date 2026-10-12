@@ -4,44 +4,18 @@
  */
 
 /**
- * Checks whether a string contains leading or trailing whitespace.
- * @param {string} str 
- * @returns {boolean}
- */
-export const hasLeadingOrTrailingWhitespace = (str) => {
-  if (typeof str !== 'string') return false;
-  return str.trim() !== str;
-};
-
-/**
  * Validates the Admin Identifier / Username field.
- * Strict rules:
- * 1. Must not be empty.
- * 2. Must not consist solely of whitespace.
- * 3. Must not have accidental leading or trailing whitespace.
+ * Because space characters are blocked in real-time at the input level,
+ * this checks strictly for required presence.
  * 
  * @param {string} adminId 
  * @returns {{ isValid: boolean, error: string | null }}
  */
 export const validateAdminId = (adminId) => {
-  if (!adminId || typeof adminId !== 'string') {
+  if (!adminId || typeof adminId !== 'string' || adminId.length === 0) {
     return {
       isValid: false,
       error: 'Admin ID is required.',
-    };
-  }
-
-  if (adminId.trim().length === 0) {
-    return {
-      isValid: false,
-      error: 'Admin ID cannot consist solely of whitespace.',
-    };
-  }
-
-  if (hasLeadingOrTrailingWhitespace(adminId)) {
-    return {
-      isValid: false,
-      error: 'Admin ID must not contain leading or trailing spaces.',
     };
   }
 
@@ -53,26 +27,17 @@ export const validateAdminId = (adminId) => {
 
 /**
  * Validates the Password field.
- * Strict rules:
- * 1. Must not be empty.
- * 2. Must not consist solely of whitespace.
- * 3. Exact entered characters are strictly preserved without silent modification.
+ * Because space characters are blocked in real-time at the input level,
+ * this checks strictly for required presence.
  * 
  * @param {string} password 
  * @returns {{ isValid: boolean, error: string | null }}
  */
 export const validatePassword = (password) => {
-  if (!password || typeof password !== 'string') {
+  if (!password || typeof password !== 'string' || password.length === 0) {
     return {
       isValid: false,
       error: 'Password is required.',
-    };
-  }
-
-  if (password.trim().length === 0) {
-    return {
-      isValid: false,
-      error: 'Password cannot consist solely of whitespace.',
     };
   }
 

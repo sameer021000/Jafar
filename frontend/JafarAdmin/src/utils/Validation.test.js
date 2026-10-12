@@ -2,29 +2,9 @@ import {
   validateAdminId,
   validatePassword,
   validateRejectionReason,
-  hasLeadingOrTrailingWhitespace,
 } from './Validation';
 
-describe('Validation Utility Tests', () => {
-  describe('hasLeadingOrTrailingWhitespace', () => {
-    test('returns true when leading whitespace exists', () => {
-      expect(hasLeadingOrTrailingWhitespace(' admin')).toBe(true);
-    });
-
-    test('returns true when trailing whitespace exists', () => {
-      expect(hasLeadingOrTrailingWhitespace('admin ')).toBe(true);
-    });
-
-    test('returns true when both leading and trailing whitespace exist', () => {
-      expect(hasLeadingOrTrailingWhitespace('  admin  ')).toBe(true);
-    });
-
-    test('returns false when no leading/trailing whitespace exists', () => {
-      expect(hasLeadingOrTrailingWhitespace('admin')).toBe(false);
-      expect(hasLeadingOrTrailingWhitespace('admin 01')).toBe(false);
-    });
-  });
-
+describe('Validation Utility Tests (Streamlined)', () => {
   describe('validateAdminId', () => {
     test('rejects empty string', () => {
       const result = validateAdminId('');
@@ -32,20 +12,9 @@ describe('Validation Utility Tests', () => {
       expect(result.error).toBe('Admin ID is required.');
     });
 
-    test('rejects whitespace-only string', () => {
-      const result = validateAdminId('   ');
-      expect(result.isValid).toBe(false);
-      expect(result.error).toBe('Admin ID cannot consist solely of whitespace.');
-    });
-
-    test('rejects leading or trailing whitespace', () => {
-      const leading = validateAdminId(' admin');
-      expect(leading.isValid).toBe(false);
-      expect(leading.error).toBe('Admin ID must not contain leading or trailing spaces.');
-
-      const trailing = validateAdminId('admin ');
-      expect(trailing.isValid).toBe(false);
-      expect(trailing.error).toBe('Admin ID must not contain leading or trailing spaces.');
+    test('rejects null or non-string', () => {
+      expect(validateAdminId(null).isValid).toBe(false);
+      expect(validateAdminId(undefined).isValid).toBe(false);
     });
 
     test('accepts valid admin ID', () => {
@@ -62,13 +31,12 @@ describe('Validation Utility Tests', () => {
       expect(result.error).toBe('Password is required.');
     });
 
-    test('rejects whitespace-only password', () => {
-      const result = validatePassword('    ');
-      expect(result.isValid).toBe(false);
-      expect(result.error).toBe('Password cannot consist solely of whitespace.');
+    test('rejects null or non-string', () => {
+      expect(validatePassword(null).isValid).toBe(false);
+      expect(validatePassword(undefined).isValid).toBe(false);
     });
 
-    test('accepts valid password without altering characters', () => {
+    test('accepts valid password', () => {
       const result = validatePassword('admin');
       expect(result.isValid).toBe(true);
       expect(result.error).toBeNull();
