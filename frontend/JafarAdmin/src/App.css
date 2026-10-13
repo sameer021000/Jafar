@@ -127,3 +127,38 @@ button {
     scroll-behavior: auto !important;
   }
 }
+
+/* App Initialization / Session Rehydration Screen */
+.app-initializer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 100vh;
+  background: var(--color-bg-radial);
+}
+
+.app-initializer__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(197, 160, 89, 0.2);
+  border-top-color: var(--color-gold-primary);
+  border-right-color: var(--color-gold-hover);
+  border-radius: var(--radius-full);
+  animation: appInitializerSpin 0.8s linear infinite;
+}
+
+.app-initializer__text {
+  color: var(--color-gold-primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@keyframes appInitializerSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}

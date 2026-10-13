@@ -60,10 +60,9 @@ function App() {
 
   if (isInitializing) {
     return (
-      <div className="app-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-        <p style={{ color: 'var(--color-primary-gold, #C5A059)', fontSize: '1rem', letterSpacing: '0.05em' }}>
-          Loading Jafar Portal...
-        </p>
+      <div className="app-initializer">
+        <div className="app-initializer__spinner" aria-hidden="true" />
+        <p className="app-initializer__text">Loading Jafar Portal...</p>
       </div>
     );
   }
