@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import LoginScreen from './components/LoginScreen/LoginScreen';
+import LoginScreen from './Components/LoginScreen/LoginScreen';
 import { verifySession, logout } from './Services/AdminAuthService';
 import { getToken, clearToken } from './Utils/TokenManager';
 import './App.css';
