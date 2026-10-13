@@ -1,0 +1,71 @@
+/* FormInput.css */
+
+.form-input {
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+}
+
+.form-input__label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.required-star {
+  color: var(--color-error);
+  margin-left: 0.25rem;
+}
+
+.form-input__wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0 0.5rem;
+  height: 48px;
+  transition: var(--transition-fast);
+}
+
+.form-input__wrapper:focus-within {
+  border-color: var(--color-gold-primary);
+  box-shadow: 0 0 0 2px var(--color-gold-glow);
+}
+
+.form-input__prefix {
+  margin-right: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.form-input__field {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--color-text-main);
+}
+
+.form-input__field::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-input.has-error .form-input__wrapper {
+  border-color: var(--color-error);
+  animation: shake 0.3s ease;
+}
+
+.form-input__error {
+  margin-top: 0.25rem;
+  color: var(--color-error);
+  font-size: 0.85rem;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
