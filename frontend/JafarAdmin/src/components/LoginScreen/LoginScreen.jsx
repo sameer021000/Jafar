@@ -4,9 +4,9 @@ import FormInput from '../Common/FormInput/FormInput';
 import PasswordInput from '../Common/PasswordInput/PasswordInput';
 import PrimaryButton from '../Common/PrimaryButton/PrimaryButton';
 import ErrorAlert from '../Common/ErrorAlert/ErrorAlert';
-import { validateAdminId, validatePassword } from '../../utils/Validation';
+import { validateAdminId, validatePassword } from '../../Utils/Validation';
 import { login } from '../../Services/AdminAuthService';
-import { saveToken } from '../../utils/TokenManager';
+import { saveToken } from '../../Utils/TokenManager';
 import './LoginScreen.css';
 
 /**
