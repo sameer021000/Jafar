@@ -1,0 +1,56 @@
+/* FormSelect.css */
+
+.form-select {
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+}
+
+.form-select__label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.required-star {
+  color: var(--color-error);
+  margin-left: 0.25rem;
+}
+
+.form-select__field {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 0.5rem; /* space for custom arrow */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface) url("data:image/svg+xml,%3Csvg viewBox='0 0 4 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 0L0 2h4L2 0z' fill='%23999'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
+  background-size: 0.5rem 0.75rem;
+  appearance: none;
+  font-size: 1rem;
+  color: var(--color-text-main);
+  transition: var(--transition-fast);
+}
+
+.form-select__field:focus {
+  outline: none;
+  border-color: var(--color-gold-primary);
+  box-shadow: 0 0 0 2px var(--color-gold-glow);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 4 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 0L0 2h4L2 0z' fill='%23B8964A'/%3E%3C/svg%3E");
+}
+
+.form-select.has-error .form-select__field {
+  border-color: var(--color-error);
+  animation: shake 0.3s ease;
+}
+
+.form-select__error {
+  margin-top: 0.25rem;
+  color: var(--color-error);
+  font-size: 0.85rem;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}

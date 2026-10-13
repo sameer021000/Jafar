@@ -1,0 +1,12 @@
+/* PhoneInput.css */
+
+.phone-input .form-input__wrapper {
+  /* ensure the prefix slot aligns nicely */
+  padding-left: 0.5rem;
+}
+
+.phone-input__prefix {
+  margin-right: 0.5rem;
+  font-weight: 600;
+  color: var(--color-gold-primary);
+}
