@@ -5,7 +5,8 @@ import PasswordInput from '../Common/PasswordInput/PasswordInput';
 import PrimaryButton from '../Common/PrimaryButton/PrimaryButton';
 import ErrorAlert from '../Common/ErrorAlert/ErrorAlert';
 import { validateAdminId, validatePassword } from '../../utils/Validation';
-import { authenticateAdmin } from '../../data/MockAdminCredentials';
+import { login } from '../../Services/AdminAuthService';
+import { saveToken } from '../../utils/TokenManager';
 import './LoginScreen.css';
 
 /**
@@ -13,7 +14,7 @@ import './LoginScreen.css';
  * Orchestrates login form inputs, live validation, error banners, and authentication handling.
  * 
  * @param {object} props
- * @param {function} props.onLoginSuccess - Callback invoked when mock authentication succeeds
+ * @param {function} props.onLoginSuccess - Callback invoked when authentication succeeds
  */
 function LoginScreen({ onLoginSuccess }) {
   const [adminId, setAdminId] = useState('');
@@ -67,22 +68,18 @@ function LoginScreen({ onLoginSuccess }) {
     setIsSubmitting(true);
 
     try {
-      const response = await authenticateAdmin(adminId, password);
+      const data = await login(adminId, password);
 
-      if (response.success && response.admin) {
+      if (data && data.Token) {
+        saveToken(data.Token);
         if (typeof onLoginSuccess === 'function') {
-          onLoginSuccess(response.admin);
+          onLoginSuccess({ AdminID: data.AdminID });
         }
-      } else {
-        setErrors((prev) => ({
-          ...prev,
-          global: response.message || 'Invalid Admin ID or password. Please verify your credentials.',
-        }));
       }
     } catch (err) {
       setErrors((prev) => ({
         ...prev,
-        global: 'An unexpected system error occurred. Please try again.',
+        global: err.message || 'Invalid Admin ID or password. Please verify your credentials.',
       }));
     } finally {
       setIsSubmitting(false);
