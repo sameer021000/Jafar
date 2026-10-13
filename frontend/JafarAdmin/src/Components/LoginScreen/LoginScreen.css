@@ -68,42 +68,6 @@
   margin-top: 0.5rem;
 }
 
-/* Evaluation Demo Helper Pill */
-.login-card__demo-helper {
-  margin-top: 1.75rem;
-  padding: 0.875rem 1rem;
-  background-color: var(--color-surface-muted);
-  border: 1px dashed var(--color-gold-border);
-  border-radius: var(--radius-md);
-  font-size: 0.8125rem;
-  color: var(--color-text-secondary);
-  line-height: 1.45;
-}
-
-.login-card__demo-helper-title {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-weight: 600;
-  color: var(--color-gold-hover);
-  margin-bottom: 0.35rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.login-card__demo-helper-icon {
-  width: 14px;
-  height: 14px;
-}
-
-.login-card__demo-helper-code {
-  font-family: monospace;
-  background-color: rgba(0, 0, 0, 0.04);
-  padding: 0.1rem 0.35rem;
-  border-radius: 4px;
-  color: var(--color-text-main);
-  font-weight: 600;
-}
 
 /* Responsive Breakpoints */
 @media (max-width: 480px) {
