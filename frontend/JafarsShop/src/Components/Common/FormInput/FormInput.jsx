@@ -49,7 +49,7 @@ export default function FormInput({
     if (preventSpaces) {
       const txt = e.clipboardData.getData('text').replace(/\s+/g, '');
       e.preventDefault();
-      const sanitized = new Event('input', { bubbles: true });
+  
       e.target.value = txt.replace(/\s+/g, '');
       onChange(e);
     }

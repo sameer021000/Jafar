@@ -130,7 +130,7 @@ export const validateImages = (arr) => {
   return { isValid: true, error: null };
 };
 
-export default {
+const Validation = {
   validateFirstName,
   validateMiddleName,
   validateLastName,
@@ -148,3 +148,5 @@ export default {
   validateStreetAddress,
   validateImages,
 };
+
+export default Validation;
