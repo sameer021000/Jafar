@@ -17,7 +17,16 @@ import {
   validateShopId,
   validatePassword,
   validateConfirmPassword,
+  validateShopName,
+  validateDistrict,
+  validatePincode,
+  validateLandmark,
+  validateStreetAddress,
+  validateImages,
 } from '../../Utils/Validation';
+import FormTextArea from '../Common/FormTextArea/FormTextArea';
+import FormSelect from '../Common/FormSelect/FormSelect';
+import ImageUpload from '../Common/ImageUpload/ImageUpload';
 
 /**
  * SignUpScreen renders the first half of the two‑phase registration form.
@@ -50,6 +59,31 @@ export default function SignUpScreen({ onNavigate }) {
     confirmPassword: '',
   });
 
+  // ---- Phase‑2 state ----
+  const [phase2, setPhase2] = useState({
+    shopName: '',
+    shopDescription: '',
+    state: '',
+    district: '',
+    pincode: '',
+    landmark: '',
+    streetAddress: '',
+  });
+
+  const [phase2Errors, setPhase2Errors] = useState({
+    shopName: '',
+    shopDescription: '',
+    state: '',
+    district: '',
+    pincode: '',
+    landmark: '',
+    streetAddress: '',
+    images: '',
+  });
+
+  const [images, setImages] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitNotice, setSubmitNotice] = useState('');
   // ---- Helpers ----
   const handleChange = (field) => (e) => {
     const val = e.target.value;
@@ -57,6 +91,50 @@ export default function SignUpScreen({ onNavigate }) {
     setErrors((prev) => ({ ...prev, [field]: '' }));
   };
 
+  // ---- Phase‑2 helpers ----
+  const handlePhase2Change = (field) => (e) => {
+    const val = e.target.value;
+    setPhase2((prev) => ({ ...prev, [field]: val }));
+    setPhase2Errors((prev) => ({ ...prev, [field]: '' }));
+  };
+
+  const handleBack = () => {
+    setPhase(1);
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const newErrors = {};
+    const n = validateShopName(phase2.shopName);
+    if (!n.isValid) newErrors.shopName = n.error;
+    const d = validateDistrict(phase2.district);
+    if (!d.isValid) newErrors.district = d.error;
+    const p = validatePincode(phase2.pincode);
+    if (!p.isValid) newErrors.pincode = p.error;
+    const lm = validateLandmark(phase2.landmark);
+    if (!lm.isValid) newErrors.landmark = lm.error;
+    const sa = validateStreetAddress(phase2.streetAddress);
+    if (!sa.isValid) newErrors.streetAddress = sa.error;
+    if (!phase2.state) newErrors.state = 'State is required';
+    const img = validateImages(images);
+    if (!img.isValid) newErrors.images = img.error;
+    setPhase2Errors(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      setIsSubmitting(true);
+      setTimeout(() => {
+        setSubmitNotice('Registration details are ready. Store registration submission is not yet active — this will be enabled once the backend is live.');
+        setIsSubmitting(false);
+      }, 300);
+    }
+  };
+
+  const indianStatesOptions = [
+    { value: 'Andhra Pradesh', label: 'Andhra Pradesh' },
+    { value: 'Karnataka', label: 'Karnataka' },
+    { value: 'Maharashtra', label: 'Maharashtra' },
+    { value: 'Tamil Nadu', label: 'Tamil Nadu' },
+    { value: 'Uttar Pradesh', label: 'Uttar Pradesh' },
+  ];
   const runValidation = () => {
     const newErrors = {};
     const f = validateFirstName(values.firstName);
@@ -88,14 +166,102 @@ export default function SignUpScreen({ onNavigate }) {
     }
   };
 
-  // Render Phase 1 only (Phase 2 UI will be added in a later phase).
-  if (phase !== 1) {
-    // Simple placeholder – real Phase 2 will replace this.
+  // Render Phase 2 UI when phase === 2
+  if (phase === 2) {
     return (
       <div className="signup-screen-container">
         <div className="signup-card">
           <BrandHeader />
-          <p>Phase 2 UI will be implemented in a later step.</p>
+          <div className="signup-step-indicator">Step 2 of 2</div>
+          {phase2Errors.global && <ErrorAlert message={phase2Errors.global} />}
+          <form className="signup-form" onSubmit={handleSignUp} noValidate>
+            <FormInput
+              id="shopName"
+              label="Shop Name"
+              value={phase2.shopName}
+              onChange={handlePhase2Change('shopName')}
+              required
+              maxLength={35}
+              error={phase2Errors.shopName}
+            />
+            <FormTextArea
+              id="shopDescription"
+              label="Shop Description"
+              value={phase2.shopDescription}
+              onChange={handlePhase2Change('shopDescription')}
+              rows={3}
+              error={phase2Errors.shopDescription}
+            />
+            <FormSelect
+              id="state"
+              label="State"
+              value={phase2.state}
+              onChange={handlePhase2Change('state')}
+              options={indianStatesOptions}
+              required
+              error={phase2Errors.state}
+            />
+            <FormInput
+              id="district"
+              label="District"
+              value={phase2.district}
+              onChange={handlePhase2Change('district')}
+              required
+              error={phase2Errors.district}
+            />
+            <FormInput
+              id="pincode"
+              label="Pincode"
+              type="tel"
+              inputMode="numeric"
+              value={phase2.pincode}
+              onChange={handlePhase2Change('pincode')}
+              required
+              preventSpaces
+              maxLength={6}
+              error={phase2Errors.pincode}
+            />
+            <FormTextArea
+              id="landmark"
+              label="Landmark"
+              value={phase2.landmark}
+              onChange={handlePhase2Change('landmark')}
+              rows={3}
+              required
+              error={phase2Errors.landmark}
+            />
+            <FormTextArea
+              id="streetAddress"
+              label="Street Address"
+              value={phase2.streetAddress}
+              onChange={handlePhase2Change('streetAddress')}
+              rows={3}
+              required
+              error={phase2Errors.streetAddress}
+            />
+            <ImageUpload
+              id="shopImages"
+              label="Shop Images"
+              initialFiles={[]}
+              onChange={setImages}
+              maxFiles={4}
+              error={phase2Errors.images}
+              required
+            />
+            {submitNotice && <p className="submit-notice">{submitNotice}</p>}
+            <div className="phase2-actions" style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+              <button type="button" className="secondary-button" onClick={handleBack}>← Back</button>
+              <PrimaryButton type="submit" isLoading={isSubmitting} loadingLabel="Submitting...">
+                Submit Registration
+              </PrimaryButton>
+            </div>
+          </form>
+          <p className="signin-link">
+            Already have an account?{' '}
+            <button type="button" className="link-button" onClick={() => onNavigate('signin')}>
+              Sign In
+            </button>
+          </p>
         </div>
       </div>
     );

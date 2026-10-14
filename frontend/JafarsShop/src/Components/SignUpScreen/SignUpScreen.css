@@ -59,3 +59,29 @@
 .link-button:hover {
   color: var(--color-gold-hover);
 }
+
+/* Secondary button used for Back navigation */
+.secondary-button {
+  background: transparent;
+  border: 2px solid var(--color-gold-primary);
+  color: var(--color-gold-primary);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.secondary-button:hover {
+  background: var(--color-gold-primary);
+  color: #fff;
+}
+
+/* Notice displayed after successful (honest) submission */
+.submit-notice {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: var(--color-success);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
