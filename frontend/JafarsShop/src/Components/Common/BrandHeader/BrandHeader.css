@@ -1,0 +1,44 @@
+/* BrandHeader.css */
+
+.brand-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: var(--font-sans);
+}
+
+.brand-header__emblem {
+  margin: 0 auto 1rem;
+  width: 64px;
+  height: 64px;
+  transition: var(--transition-fast);
+}
+
+.brand-header__emblem:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.brand-header__svg-path {
+  fill: var(--color-gold-primary);
+  stroke: var(--color-gold-primary);
+}
+
+.brand-header__title {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--color-gold-primary), var(--color-gold-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.brand-header__subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  margin: 0.25rem 0 0;
+}
+
+.brand-header__description {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.5rem;
+}
