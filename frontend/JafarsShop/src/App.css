@@ -1,36 +1,36 @@
 /* ==========================================================================
    JAFARS SHOP — GLOBAL DESIGN TOKENS & RESET STYLES
-   Curated antique gold, cool ivory, and near-black theme
-   designed for imitation gold & gold-plated jewelry store management
+   Curated champagne gold, warm ivory, and near-black theme
+   aligned with JafarAdmin palette; store-partner identity preserved via layouts
    ========================================================================== */
 
 :root {
-  /* Brand Primary & Antique Gold Accents */
-  --color-gold-primary: #B8964A;
-  --color-gold-hover: #9E7E38;
-  --color-gold-light: #F5F0E8;
-  --color-gold-subtle: #E8D5AA;
-  --color-gold-glow: rgba(184, 150, 74, 0.22);
-  --color-gold-border: rgba(184, 150, 74, 0.35);
+  /* Brand Primary & Gold Accents (aligned with JafarAdmin) */
+  --color-gold-primary: #C5A059;
+  --color-gold-hover: #B38E46;
+  --color-gold-light: #F8F3EA;
+  --color-gold-subtle: #EEDBBA;
+  --color-gold-glow: rgba(197, 160, 89, 0.22);
+  --color-gold-border: rgba(197, 160, 89, 0.35);
 
   /* Surfaces & Canvas */
-  --color-bg-main: #F8F7F5;
-  --color-bg-radial: radial-gradient(circle at 50% 20%, #FDFCFA 0%, #F2EEE5 100%);
+  --color-bg-main: #FAFAF7;
+  --color-bg-radial: radial-gradient(circle at 50% 20%, #FDFBF7 0%, #F5F1E8 100%);
   --color-surface: #FFFFFF;
-  --color-surface-muted: #F3F1EA;
+  --color-surface-muted: #F5F3EC;
   --color-surface-elevated: #FFFFFF;
 
   /* Typography Colors */
-  --color-text-main: #1C1D1F;
-  --color-text-secondary: #46484F;
-  --color-text-muted: #70737F;
+  --color-text-main: #1D1E20;
+  --color-text-secondary: #484A51;
+  --color-text-muted: #737682;
   --color-text-inverse: #FFFFFF;
 
   /* Border & Dividers */
-  --color-border: #E5E2D8;
-  --color-border-light: #EDEAD8;
+  --color-border: #E8E4DA;
+  --color-border-light: #F0ECE2;
 
-  /* Feedback Colors */
+  /* Feedback Colors (Ruby Red & Deep Emerald) */
   --color-error: #BA3329;
   --color-error-hover: #9E2B23;
   --color-error-bg: #FDF3F2;
@@ -44,16 +44,16 @@
   --color-warning-bg: #FCF6EC;
   --color-warning-border: #F1DCB2;
 
-  /* Info / Notice — used for honest submission notice */
+  /* Info / Notice — honest submission notice */
   --color-info: #2563A8;
   --color-info-bg: #EFF6FF;
   --color-info-border: #BFDBFE;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(28, 29, 31, 0.05), 0 1px 2px rgba(28, 29, 31, 0.03);
-  --shadow-md: 0 4px 14px rgba(28, 29, 31, 0.06), 0 1px 3px rgba(184, 150, 74, 0.08);
-  --shadow-lg: 0 12px 32px rgba(28, 29, 31, 0.08), 0 2px 6px rgba(184, 150, 74, 0.12);
-  --shadow-card: 0 8px 28px rgba(30, 25, 15, 0.07);
+  --shadow-sm: 0 1px 3px rgba(29, 30, 32, 0.05), 0 1px 2px rgba(29, 30, 32, 0.03);
+  --shadow-md: 0 4px 14px rgba(29, 30, 32, 0.06), 0 1px 3px rgba(197, 160, 89, 0.08);
+  --shadow-lg: 0 12px 32px rgba(29, 30, 32, 0.08), 0 2px 6px rgba(197, 160, 89, 0.12);
+  --shadow-card: 0 8px 28px rgba(35, 30, 20, 0.07);
 
   /* Border Radius */
   --radius-sm: 6px;
@@ -61,7 +61,7 @@
   --radius-lg: 16px;
   --radius-full: 9999px;
 
-  /* Typography */
+  /* Typography (matched to JafarAdmin) */
   --font-serif: "Cinzel", "Playfair Display", "Georgia", "Times New Roman", serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 

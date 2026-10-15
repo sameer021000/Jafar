@@ -1,5 +1,6 @@
 // BrandHeader.jsx
 // Shared branding header for JafarsShop (store partner portal).
+// Typography and emblem container are aligned with JafarAdmin.
 import React from 'react';
 import './BrandHeader.css';
 
@@ -9,28 +10,37 @@ import './BrandHeader.css';
  */
 export default function BrandHeader() {
   return (
-    <div className="brand-header">
-      <div className="brand-header__emblem" aria-hidden="true">
-        {/* Crown‑jewelry SVG – identical path to JafarAdmin but recolored via CSS */}
+    <header className="brand-header">
+      <div className="brand-header__emblem-container" aria-hidden="true">
         <svg
-          width="64"
-          height="64"
-          viewBox="0 0 64 64"
+          className="brand-header__emblem-svg"
+          viewBox="0 0 24 24"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          <path
-            d="M12 48L20 20L32 44L44 20L52 48H12Z"
-            className="brand-header__svg-path"
-          />
-          <circle cx="32" cy="52" r="4" className="brand-header__svg-path" />
+          {/* Stylized jewelry jewel & crown motif (shared with JafarAdmin) */}
+          <polygon points="12 2 21 8.5 18 19 6 19 3 8.5 12 2" />
+          <line x1="12" y1="2" x2="12" y2="19" />
+          <line x1="3" y1="8.5" x2="21" y2="8.5" />
+          <line x1="7.5" y1="19" x2="12" y2="8.5" />
+          <line x1="16.5" y1="19" x2="12" y2="8.5" />
         </svg>
       </div>
+
       <h1 className="brand-header__title">Jafar Works</h1>
-      <h2 className="brand-header__subtitle">Store Partner Portal</h2>
+
+      <div className="brand-header__tagline-wrapper">
+        <span className="brand-header__accent-line" aria-hidden="true" />
+        <span className="brand-header__subtitle">Store Partner Portal</span>
+        <span className="brand-header__accent-line" aria-hidden="true" />
+      </div>
+
       <p className="brand-header__description">
         Register your jewellery store and manage your Jafar presence
       </p>
-    </div>
+    </header>
   );
 }
