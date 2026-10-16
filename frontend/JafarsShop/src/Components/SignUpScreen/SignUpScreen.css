@@ -40,7 +40,7 @@
   width: 100%;
   max-width: 1180px;
   display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) minmax(420px, 1.1fr);
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 1fr);
   gap: 2rem;
   align-items: stretch;
   position: relative;
@@ -61,7 +61,7 @@
   background: linear-gradient(160deg, #1D1E20 0%, #2A2C33 55%, #3A3123 100%);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  padding: 2.5rem 2rem;
+  padding: 2rem;
   color: var(--color-text-inverse);
   position: relative;
   overflow: hidden;
@@ -207,9 +207,9 @@
   margin-top: 0.25rem;
 }
 
+/* Phase 1 "Next" button — full width */
 .signup-form .primary-button {
   width: 100%;
-  min-height: 52px;
   margin-top: 0.5rem;
   font-size: 1rem;
   letter-spacing: 0.02em;
@@ -230,26 +230,14 @@
   margin-top: 0.75rem;
 }
 
+/* Back button sits at its natural width; PrimaryButton takes the rest */
 .phase2-actions .secondary-button {
   flex: 0 0 auto;
-  min-height: 48px;
-  padding: 0 1.25rem;
-  border: 2px solid var(--color-gold-primary);
-  color: var(--color-gold-primary);
-  background: transparent;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.phase2-actions .secondary-button:hover {
-  background: var(--color-gold-primary);
-  color: var(--color-text-inverse);
-}
-
-.phase2-actions__primary {
+.phase2-actions .primary-button {
   flex: 1;
+  width: 100%;
 }
 
 /* Notice */
@@ -272,22 +260,7 @@
   text-align: center;
   color: var(--color-text-secondary);
 }
-
-.link-button {
-  background: none;
-  border: none;
-  color: var(--color-gold-primary);
-  cursor: pointer;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 0;
-  transition: color var(--transition-fast);
-}
-
-.link-button:hover {
-  color: var(--color-gold-hover);
-  text-decoration: underline;
-}
+/* .link-button and .secondary-button styles live in their own component CSS files */
 
 /* Visually hidden live region for step announcements */
 .sr-only {

@@ -40,6 +40,7 @@ export default function FormInput({
   maxLength,
   inputMode,
   prefix,
+  onKeyDown: externalKeyDown,
 }) {
   const CONTROL_KEYS = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End', 'Enter'];
 
@@ -55,6 +56,10 @@ export default function FormInput({
     if (alphaOnly && !CONTROL_KEYS.includes(e.key) && !/^[A-Za-z]$/.test(e.key)) {
       e.preventDefault();
       return;
+    }
+    // Forward to external handler (e.g. PhoneInput's digit-only enforcement)
+    if (typeof externalKeyDown === 'function') {
+      externalKeyDown(e);
     }
   };
 

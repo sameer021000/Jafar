@@ -1,5 +1,6 @@
 import React from 'react';
 import BrandHeader from '../Common/BrandHeader/BrandHeader';
+import SecondaryButton from '../Common/SecondaryButton/SecondaryButton';
 import './ForgotPasswordScreen.css';
 
 /**
@@ -8,16 +9,16 @@ import './ForgotPasswordScreen.css';
  */
 export default function ForgotPasswordScreen({ onNavigate }) {
   return (
-    <div className="signup-screen-container">
-      <div className="signup-card">
+    <div className="forgot-screen-container">
+      <div className="forgot-card">
         <BrandHeader />
         <h2 className="forgot-heading">Forgot Your Password?</h2>
         <p className="placeholder-message">
           Password recovery is coming soon. This feature will be available once the recovery system is implemented.
         </p>
-        <button type="button" className="secondary-button" onClick={() => onNavigate('signup')}>
+        <SecondaryButton onClick={() => onNavigate('signup')}>
           ← Back to Sign Up
-        </button>
+        </SecondaryButton>
       </div>
     </div>
   );

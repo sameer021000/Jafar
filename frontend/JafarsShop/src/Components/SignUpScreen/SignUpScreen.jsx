@@ -7,6 +7,8 @@ import FormInput from '../Common/FormInput/FormInput';
 import PhoneInput from '../Common/PhoneInput/PhoneInput';
 import PasswordInput from '../Common/PasswordInput/PasswordInput';
 import ErrorAlert from '../Common/ErrorAlert/ErrorAlert';
+import SecondaryButton from '../Common/SecondaryButton/SecondaryButton';
+import LinkButton from '../Common/LinkButton/LinkButton';
 import './SignUpScreen.css';
 import {
   validateFirstName,
@@ -414,24 +416,22 @@ export default function SignUpScreen({ onNavigate }) {
                     required
                   />
                   {submitNotice && <p className="submit-notice">{submitNotice}</p>}
-                  <div className="phase2-actions" style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
-                    <button type="button" className="secondary-button" onClick={handleBack}>
+                  <div className="phase2-actions">
+                    <SecondaryButton onClick={handleBack}>
                       ← Back
-                    </button>
-                    <div className="phase2-actions__primary">
-                      <PrimaryButton type="submit" isLoading={isSubmitting} loadingLabel="Submitting...">
-                        Submit Registration
-                      </PrimaryButton>
-                    </div>
+                    </SecondaryButton>
+                    <PrimaryButton type="submit" isLoading={isSubmitting} loadingLabel="Submitting...">
+                      Submit Registration
+                    </PrimaryButton>
                   </div>
                 </form>
               )}
 
               <p className="signin-link">
                 Already have an account?{' '}
-                <button type="button" className="link-button" onClick={() => onNavigate('signin')}>
+                <LinkButton onClick={() => onNavigate('signin')}>
                   Sign In
-                </button>
+                </LinkButton>
               </p>
             </div>
           </div>
