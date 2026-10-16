@@ -1,0 +1,92 @@
+/* ProgressSteps.css */
+
+.progress-steps {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-sans);
+}
+
+.progress-steps__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem;
+  position: relative;
+}
+
+.progress-steps__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 1;
+  position: relative;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  z-index: 1;
+}
+
+.progress-steps__indicator {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: all var(--transition-normal);
+}
+
+.progress-steps__step--active .progress-steps__indicator {
+  border-color: var(--color-gold-primary);
+  background: var(--color-gold-primary);
+  color: var(--color-text-inverse);
+  box-shadow: 0 0 0 4px var(--color-gold-glow);
+}
+
+.progress-steps__step--completed .progress-steps__indicator {
+  border-color: var(--color-success);
+  background: var(--color-success);
+  color: var(--color-text-inverse);
+}
+
+.progress-steps__step--active .progress-steps__label {
+  color: var(--color-gold-hover);
+}
+
+.progress-steps__step--completed .progress-steps__label {
+  color: var(--color-success);
+}
+
+.progress-steps__bar {
+  position: relative;
+  height: 3px;
+  background: var(--color-border-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-steps__bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-success), var(--color-gold-primary));
+  border-radius: var(--radius-full);
+  transition: width var(--transition-smooth);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-steps__indicator,
+  .progress-steps__bar-fill {
+    transition: none;
+  }
+}
