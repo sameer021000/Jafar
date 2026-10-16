@@ -63,6 +63,20 @@ export default function FormInput({
     }
   };
 
+  const handleChange = (e) => {
+    if (!alphaOnly && !numericOnly && !preventSpaces) {
+      if (typeof onChange === 'function') onChange(e);
+      return;
+    }
+    let val = e.target.value;
+    if (alphaOnly) val = val.replace(/[^A-Za-z]/g, '');
+    if (numericOnly) val = val.replace(/\D/g, '');
+    if (preventSpaces) val = val.replace(/\s/g, '');
+    if (typeof onChange === 'function') {
+      onChange({ ...e, target: { ...e.target, value: val } });
+    }
+  };
+
   const handlePaste = (e) => {
     const raw = e.clipboardData.getData('text');
     let sanitized = raw;
@@ -92,7 +106,7 @@ export default function FormInput({
           className="form-input__field"
           type={type}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           onBlur={onBlur}
           placeholder={placeholder}
           disabled={disabled}

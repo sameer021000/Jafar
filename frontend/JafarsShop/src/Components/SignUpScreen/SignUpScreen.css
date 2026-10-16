@@ -215,6 +215,17 @@
   letter-spacing: 0.02em;
 }
 
+/* PasswordRules box — add bottom breathing room before next field */
+.signup-form .password-rules {
+  margin-bottom: 1rem;
+}
+
+/* Confirm Password field — restore normal bottom margin */
+.signup-form .password-input-group + .password-input-group {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .signup-card,
   .signup-step {
@@ -230,14 +241,18 @@
   margin-top: 0.75rem;
 }
 
-/* Back button sits at its natural width; PrimaryButton takes the rest */
+/* Force display:flex so align-items:stretch reliably equalises heights */
 .phase2-actions .secondary-button {
+  display: flex;
   flex: 0 0 auto;
 }
 
 .phase2-actions .primary-button {
+  display: flex;
   flex: 1;
   width: 100%;
+  padding: 0 1.75rem;
+  white-space: nowrap;
 }
 
 /* Notice */
