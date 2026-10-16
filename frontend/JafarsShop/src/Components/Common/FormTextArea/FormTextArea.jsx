@@ -30,9 +30,10 @@ export default function FormTextArea({
   disabled = false,
   maxLength,
   rows = 3,
+  className = '',
 }) {
   return (
-    <div className={`form-textarea ${error ? 'has-error' : ''}`}>
+    <div className={`form-textarea ${error ? 'has-error' : ''} ${className}`.trim()}>
       <label htmlFor={id} className="form-textarea__label">
         {label}
         {required && <span className="required-star">*</span>}

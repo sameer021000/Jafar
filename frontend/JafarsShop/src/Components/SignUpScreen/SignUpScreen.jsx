@@ -391,20 +391,22 @@ export default function SignUpScreen({ onNavigate }) {
                     label="Landmark"
                     value={phase2.landmark}
                     onChange={handlePhase2Change('landmark')}
-                    rows={3}
+                    rows={2}
                     required
                     error={phase2Errors.landmark}
                     placeholder="Nearby landmark"
+                    className="form-textarea--compact"
                   />
                   <FormTextArea
                     id="streetAddress"
                     label="Street Address"
                     value={phase2.streetAddress}
                     onChange={handlePhase2Change('streetAddress')}
-                    rows={3}
+                    rows={2}
                     required
                     error={phase2Errors.streetAddress}
                     placeholder="House no., street, area"
+                    className="form-textarea--compact"
                   />
                   <ImageUpload
                     id="shopImages"

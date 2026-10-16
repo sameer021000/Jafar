@@ -98,3 +98,10 @@
   from { opacity: 0; transform: translateY(-3px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Compact variant — fixed height, no resize (used for Landmark & Street Address) */
+.form-textarea--compact .form-textarea__field {
+  resize: none;
+  min-height: unset;
+  height: 72px;
+}

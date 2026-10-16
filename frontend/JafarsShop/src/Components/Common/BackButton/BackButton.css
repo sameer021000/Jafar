@@ -9,14 +9,14 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0 1.125rem;
-  height: 52px;
   flex-shrink: 0;
+  align-self: stretch;
 
   /* Appearance */
   background: transparent;
-  border: 1.5px solid rgba(197, 160, 89, 0.35);
+  border: 1.5px solid var(--color-border);
   border-radius: 12px;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-text-secondary);
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 600;

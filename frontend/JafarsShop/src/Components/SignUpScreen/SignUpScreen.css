@@ -135,22 +135,23 @@
   }
 }
 
-/* Second-step action row */
+/* Second-step action row — fixed 52px row, both buttons stretch to fill it */
 .phase2-actions {
   display: flex;
+  height: 52px;
   gap: 0.75rem;
-  align-items: center;
+  align-items: stretch;
   margin-top: 0.75rem;
 }
 
 /* Submit Registration button fills remaining space */
 .phase2-actions .primary-button {
   flex: 1;
-  height: 52px;
   padding: 0 1.75rem;
   white-space: nowrap;
   font-size: 0.9375rem;
   letter-spacing: 0.03em;
+  height: 100%;
 }
 
 /* Notice */
