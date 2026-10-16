@@ -7,6 +7,7 @@ import {
   validateEmail,
   validateShopId,
   validatePassword,
+  getPasswordChecks,
   validateConfirmPassword,
   validateShopName,
   validateDistrict,
@@ -59,7 +60,7 @@ describe('Validation utilities', () => {
 
   test('validateDistrict – up to 5 words, letters only', () => {
     expect(validateDistrict('East Godavari')).toEqual({ isValid: true, error: null });
-    expect(validateDistrict('Very Long District Name Exceeding')).toEqual({ isValid: false, error: expect.any(String) });
+    expect(validateDistrict('Very Long District Name Exceeding Here')).toEqual({ isValid: false, error: expect.any(String) });
     expect(validateDistrict('District123')).toEqual({ isValid: false, error: expect.any(String) });
   });
 
@@ -71,5 +72,20 @@ describe('Validation utilities', () => {
   test('validateImages – at least one image', () => {
     expect(validateImages([])).toEqual({ isValid: false, error: expect.any(String) });
     expect(validateImages([{}])).toEqual({ isValid: true, error: null });
+  });
+
+  test('getPasswordChecks – granular criteria', () => {
+    const emptyChecks = getPasswordChecks('');
+    expect(emptyChecks).toHaveLength(6);
+    expect(emptyChecks.every((c) => c.passed === false)).toBe(true);
+
+    const strongChecks = getPasswordChecks('Abcdef1!');
+    expect(strongChecks.every((c) => c.passed === true)).toBe(true);
+
+    const missingUpper = getPasswordChecks('abcdef1!');
+    expect(missingUpper.find((c) => c.id === 'uppercase').passed).toBe(false);
+
+    const withSpace = getPasswordChecks('Abcd ef1!');
+    expect(withSpace.find((c) => c.id === 'noSpaces').passed).toBe(false);
   });
 });

@@ -48,22 +48,27 @@ export const validateShopId = (v) => {
   return { isValid: true, error: null };
 };
 
+// 7. Password rules exposed for live UI feedback (Phase 2).
+export const getPasswordChecks = (v) => {
+  const value = v == null ? '' : String(v);
+  return [
+    { id: 'length', label: 'Password must be 7-20 characters long', passed: value.length >= 7 && value.length <= 20 },
+    { id: 'uppercase', label: 'Password must include an uppercase letter', passed: /[A-Z]/.test(value) },
+    { id: 'lowercase', label: 'Password must include a lowercase letter', passed: /[a-z]/.test(value) },
+    { id: 'digit', label: 'Password must include a digit', passed: /\d/.test(value) },
+    { id: 'special', label: 'Password must include a special character', passed: /[!@#$%^&*(),.?":{}|<>]/.test(value) },
+    { id: 'noSpaces', label: 'Password must not contain spaces', passed: value.length > 0 && !/\s/.test(value) },
+  ];
+};
+
 // 7. Password – 7‑20 chars, at least one upper, lower, digit, special, no spaces.
 export const validatePassword = (v) => {
-  if (isEmpty(v)) return { isValid: false, error: 'Password is required' };
-  if (v.length < 7 || v.length > 20)
-    return { isValid: false, error: 'Password must be 7‑20 characters long' };
-  if (/\s/.test(v))
-    return { isValid: false, error: 'Password must not contain spaces' };
-  if (!/[A-Z]/.test(v))
-    return { isValid: false, error: 'Password must include an uppercase letter' };
-  if (!/[a-z]/.test(v))
-    return { isValid: false, error: 'Password must include a lowercase letter' };
-  if (!/\d/.test(v))
-    return { isValid: false, error: 'Password must include a digit' };
-  if (!/[!@#$%^&*(),.?":{}|<>]/.test(v))
-    return { isValid: false, error: 'Password must include a special character' };
-  return { isValid: true, error: null };
+  const value = v == null ? '' : String(v);
+  if (isEmpty(value)) return { isValid: false, error: 'Password is required' };
+  const failing = getPasswordChecks(value).find((check) => !check.passed);
+  return failing
+    ? { isValid: false, error: failing.label }
+    : { isValid: true, error: null };
 };
 
 // 8. Confirm password – must match password.
@@ -138,6 +143,7 @@ const Validation = {
   validateEmail,
   validateShopId,
   validatePassword,
+  getPasswordChecks,
   validateConfirmPassword,
   validateShopName,
   validateShopDescription,
