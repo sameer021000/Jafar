@@ -7,25 +7,34 @@
   min-height: 48px;
   padding: 0 1.5rem;
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--color-text-inverse);
-  background: linear-gradient(135deg, var(--color-gold-primary), var(--color-gold-hover));
+  background: linear-gradient(135deg, var(--color-gold-primary) 0%, var(--color-gold-hover) 100%);
   border: none;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: var(--transition-normal);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  position: relative;
+  overflow: hidden;
 }
 
-.primary-button:hover {
-  transform: translateY(-2px);
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
   box-shadow: var(--shadow-md);
+  filter: brightness(1.03);
 }
 
-.primary-button:active {
+.primary-button:active:not(:disabled) {
   transform: translateY(0);
   box-shadow: var(--shadow-sm);
+}
+
+.primary-button:focus-visible {
+  outline: 3px solid var(--color-gold-glow);
+  outline-offset: 2px;
 }
 
 .primary-button:disabled,
@@ -33,6 +42,8 @@
   opacity: 0.6;
   cursor: not-allowed;
   background: var(--color-gold-subtle);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Loading state */
@@ -57,4 +68,21 @@
 /* Hide label when loading (accessibility handled via aria-label) */
 .primary-button.loading .label {
   visibility: hidden;
+}
+
+/* Gentle shine on hover (cosmetic) */
+.primary-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transition: left 0.45s ease;
+  pointer-events: none;
+}
+
+.primary-button:hover:not(:disabled)::after {
+  left: 140%;
 }

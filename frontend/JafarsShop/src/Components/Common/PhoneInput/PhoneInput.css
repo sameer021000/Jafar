@@ -7,6 +7,10 @@
 
 .phone-input__prefix {
   margin-right: 0.5rem;
+  padding: 0.2rem 0.5rem;
   font-weight: 600;
-  color: var(--color-gold-primary);
+  font-size: 0.875rem;
+  color: var(--color-gold-hover);
+  background: var(--color-gold-light);
+  border-radius: var(--radius-sm);
 }

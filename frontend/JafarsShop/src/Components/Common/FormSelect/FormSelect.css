@@ -7,9 +7,10 @@
 
 .form-select__label {
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.45rem;
   font-weight: 600;
   color: var(--color-text-main);
+  font-size: 0.875rem;
 }
 
 .required-star {
@@ -19,38 +20,60 @@
 
 .form-select__field {
   width: 100%;
-  padding: 0.5rem 2.5rem 0.5rem 0.5rem; /* space for custom arrow */
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface) url("data:image/svg+xml,%3Csvg viewBox='0 0 4 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 0L0 2h4L2 0z' fill='%23999'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
-  background-size: 0.5rem 0.75rem;
+  padding: 0 2.5rem 0 0.875rem;
+  height: 48px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface)
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 4 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 0L0 2h4L2 0z' fill='%23737682'/%3E%3C/svg%3E")
+    no-repeat right 0.875rem center;
+  background-size: 0.5rem 0.5rem;
   appearance: none;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--color-text-main);
-  transition: var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-select__field:hover:not(:disabled) {
+  border-color: #D3CEBF;
 }
 
 .form-select__field:focus {
   outline: none;
   border-color: var(--color-gold-primary);
-  box-shadow: 0 0 0 2px var(--color-gold-glow);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 4 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 0L0 2h4L2 0z' fill='%23B8964A'/%3E%3C/svg%3E");
+  box-shadow: 0 0 0 3px var(--color-gold-glow);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 4 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 0L0 2h4L2 0z' fill='%23C5A059'/%3E%3C/svg%3E");
 }
 
 .form-select.has-error .form-select__field {
   border-color: var(--color-error);
-  animation: shake 0.3s ease;
+  animation: formSelectShake 0.3s ease-in-out;
+}
+
+.form-select.has-error .form-select__field:focus {
+  box-shadow: 0 0 0 3px rgba(186, 51, 41, 0.15);
+}
+
+.form-select__field:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .form-select__error {
-  margin-top: 0.25rem;
+  margin-top: 0.4rem;
   color: var(--color-error);
-  font-size: 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  animation: formErrorFadeIn 0.2s ease;
 }
 
-@keyframes shake {
-  10%, 90% { transform: translateX(-1px); }
-  20%, 80% { transform: translateX(2px); }
-  30%, 50%, 70% { transform: translateX(-4px); }
-  40%, 60% { transform: translateX(4px); }
+@keyframes formSelectShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+@keyframes formErrorFadeIn {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
 }
