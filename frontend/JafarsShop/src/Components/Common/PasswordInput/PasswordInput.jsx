@@ -16,7 +16,7 @@ function PasswordInput({
   autoComplete = 'new-password',
   preventSpaces = false,
 }) {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const errorId = error ? `${id}-error` : undefined;
 
   const handleToggle = () => {

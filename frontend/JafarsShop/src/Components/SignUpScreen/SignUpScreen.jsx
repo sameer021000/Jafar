@@ -7,7 +7,7 @@ import FormInput from '../Common/FormInput/FormInput';
 import PhoneInput from '../Common/PhoneInput/PhoneInput';
 import PasswordInput from '../Common/PasswordInput/PasswordInput';
 import ErrorAlert from '../Common/ErrorAlert/ErrorAlert';
-import SecondaryButton from '../Common/SecondaryButton/SecondaryButton';
+import BackButton from '../Common/BackButton/BackButton';
 import LinkButton from '../Common/LinkButton/LinkButton';
 import './SignUpScreen.css';
 import {
@@ -417,10 +417,8 @@ export default function SignUpScreen({ onNavigate }) {
                   />
                   {submitNotice && <p className="submit-notice">{submitNotice}</p>}
                   <div className="phase2-actions">
-                    <SecondaryButton onClick={handleBack}>
-                      ← Back
-                    </SecondaryButton>
-                    <PrimaryButton type="submit" isLoading={isSubmitting} loadingLabel="Submitting...">
+                    <BackButton onClick={handleBack}>Back</BackButton>
+                    <PrimaryButton type="submit" isLoading={isSubmitting} loadingLabel="Submitting…">
                       Submit Registration
                     </PrimaryButton>
                   </div>

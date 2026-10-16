@@ -1,0 +1,91 @@
+/* BackButton.css
+   A compact, unique outlined button with a sliding arrow.
+   Completely distinct from SecondaryButton.
+*/
+
+.back-button {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.125rem;
+  height: 52px;
+  flex-shrink: 0;
+
+  /* Appearance */
+  background: transparent;
+  border: 1.5px solid rgba(197, 160, 89, 0.35);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  white-space: nowrap;
+
+  /* Transition */
+  transition:
+    border-color 200ms ease,
+    color 200ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease;
+
+  /* Kill tap highlight */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  outline: none;
+}
+
+/* ---- Arrow icon container ---- */
+.back-button__track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.back-button__arrow-svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* ---- Label ---- */
+.back-button__label {
+  line-height: 1;
+}
+
+/* ---- Hover state ---- */
+.back-button:hover {
+  border-color: var(--color-gold-primary);
+  color: var(--color-gold-primary);
+  background: rgba(197, 160, 89, 0.06);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.08);
+}
+
+.back-button:hover .back-button__track {
+  transform: translateX(-4px);
+}
+
+/* ---- Active / pressed state ---- */
+.back-button:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+/* ---- Focus-visible (keyboard) ---- */
+.back-button:focus-visible {
+  outline: 2px solid var(--color-gold-primary);
+  outline-offset: 2px;
+}
+
+/* ---- Disabled state ---- */
+.back-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
