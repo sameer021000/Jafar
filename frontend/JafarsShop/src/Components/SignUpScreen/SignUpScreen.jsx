@@ -1,6 +1,6 @@
 // SignUpScreen.jsx
 // Two-phase registration flow for JafarsShop (Split-screen luxury layout).
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import BrandHeader from '../Common/BrandHeader/BrandHeader';
 import PrimaryButton from '../Common/PrimaryButton/PrimaryButton';
 import FormInput from '../Common/FormInput/FormInput';
@@ -37,6 +37,21 @@ import ProgressSteps from '../Common/ProgressSteps/ProgressSteps';
 export default function SignUpScreen({ onNavigate }) {
   // ---- Phase control ----
   const [phase, setPhase] = useState(1);
+  const prevPhaseRef = useRef(1);
+
+  // Focus management + step announcements when advancing/backtracking.
+  useEffect(() => {
+    if (prevPhaseRef.current === phase) return;
+    const targetSelector = phase === 1 ? '#firstName' : '#shopName';
+    // Defer to after render so the new step's first field exists.
+    requestAnimationFrame(() => {
+      const field = document.querySelector(targetSelector);
+      if (field && typeof field.focus === 'function') {
+        field.focus();
+      }
+    });
+    prevPhaseRef.current = phase;
+  }, [phase]);
 
   // ---- Phase 1 state ----
   const [values, setValues] = useState({
@@ -238,6 +253,9 @@ export default function SignUpScreen({ onNavigate }) {
         {/* Form panel */}
         <section className="signup-form-panel">
           <div className="signup-card">
+            <span className="sr-only" aria-live="polite" aria-atomic="true">
+              Step {phase} of 2: {phase === 1 ? 'Your details' : 'Store details'}
+            </span>
             <BrandHeader />
             <ProgressSteps steps={progressSteps} current={phase - 1} />
 
