@@ -35,23 +35,42 @@ export default function FormInput({
   disabled = false,
   autoComplete,
   preventSpaces = false,
+  alphaOnly = false,
+  numericOnly = false,
   maxLength,
   inputMode,
   prefix,
 }) {
+  const CONTROL_KEYS = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End', 'Enter'];
+
   const handleKeyDown = (e) => {
     if (preventSpaces && e.key === ' ') {
       e.preventDefault();
+      return;
+    }
+    if (numericOnly && !CONTROL_KEYS.includes(e.key) && !/^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+      return;
+    }
+    if (alphaOnly && !CONTROL_KEYS.includes(e.key) && !/^[A-Za-z]$/.test(e.key)) {
+      e.preventDefault();
+      return;
     }
   };
 
   const handlePaste = (e) => {
-    if (preventSpaces) {
-      const txt = e.clipboardData.getData('text').replace(/\s+/g, '');
+    const raw = e.clipboardData.getData('text');
+    let sanitized = raw;
+
+    if (numericOnly) sanitized = sanitized.replace(/\D/g, '');
+    if (alphaOnly) sanitized = sanitized.replace(/[^A-Za-z]/g, '');
+    if (preventSpaces) sanitized = sanitized.replace(/\s/g, '');
+
+    if (sanitized !== raw) {
       e.preventDefault();
-  
-      e.target.value = txt.replace(/\s+/g, '');
-      onChange(e);
+      if (typeof onChange === 'function') {
+        onChange({ target: { value: sanitized } });
+      }
     }
   };
 

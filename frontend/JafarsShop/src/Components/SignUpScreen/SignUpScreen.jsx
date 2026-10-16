@@ -25,8 +25,9 @@ import {
   validateImages,
 } from '../../Utils/Validation';
 import FormTextArea from '../Common/FormTextArea/FormTextArea';
-import FormSelect from '../Common/FormSelect/FormSelect';
 import ImageUpload from '../Common/ImageUpload/ImageUpload';
+import CustomSelect from '../Common/CustomSelect/CustomSelect';
+import SignUpShowcase from '../SignUpShowcase/SignUpShowcase';
 import PasswordRules from '../Common/PasswordRules/PasswordRules';
 import ProgressSteps from '../Common/ProgressSteps/ProgressSteps';
 
@@ -223,32 +224,8 @@ export default function SignUpScreen({ onNavigate }) {
   return (
     <div className="signup-screen-container">
       <div className="signup-layout">
-        {/* Decorative showcase panel (desktop only) */}
-        <aside className="signup-showcase" aria-hidden="true">
-          <div className="signup-showcase__emblem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="12 2 21 8.5 18 19 6 19 3 8.5 12 2" />
-              <line x1="12" y1="2" x2="12" y2="19" />
-              <line x1="3" y1="8.5" x2="21" y2="8.5" />
-              <line x1="7.5" y1="19" x2="12" y2="8.5" />
-              <line x1="16.5" y1="19" x2="12" y2="8.5" />
-            </svg>
-          </div>
-          <h2 className="signup-showcase__title">Jafar Works</h2>
-          <p className="signup-showcase__subtitle">Store Partner Portal</p>
-          <p className="signup-showcase__copy">
-            Register your jewellery store and manage your presence on the Jafar platform.
-          </p>
-          <ul className="signup-showcase__list">
-            <li>Create your merchant profile</li>
-            <li>Add store location and contact details</li>
-            <li>Upload up to 4 store images</li>
-            <li>Submit for Jafar admin review</li>
-          </ul>
-          <div className="signup-showcase__step">
-            Step {phase} of 2
-          </div>
-        </aside>
+        {/* Dedicated desktop showcase panel */}
+        <SignUpShowcase phase={phase} />
 
         {/* Form panel */}
         <section className="signup-form-panel">
@@ -271,7 +248,9 @@ export default function SignUpScreen({ onNavigate }) {
                     onChange={handleChange('firstName')}
                     required
                     preventSpaces
+                    alphaOnly
                     error={errors.firstName}
+                    placeholder="Enter first name (letters only)"
                   />
                   <FormInput
                     id="middleName"
@@ -279,7 +258,9 @@ export default function SignUpScreen({ onNavigate }) {
                     value={values.middleName}
                     onChange={handleChange('middleName')}
                     preventSpaces
+                    alphaOnly
                     error={errors.middleName}
+                    placeholder="Optional middle name"
                   />
                   <FormInput
                     id="lastName"
@@ -288,7 +269,9 @@ export default function SignUpScreen({ onNavigate }) {
                     onChange={handleChange('lastName')}
                     required
                     preventSpaces
+                    alphaOnly
                     error={errors.lastName}
+                    placeholder="Enter last name"
                   />
                   <PhoneInput
                     id="phone"
@@ -306,6 +289,7 @@ export default function SignUpScreen({ onNavigate }) {
                     onChange={handleChange('email')}
                     required
                     error={errors.email}
+                    placeholder="name@example.com"
                   />
                   <FormInput
                     id="shopId"
@@ -326,18 +310,19 @@ export default function SignUpScreen({ onNavigate }) {
                     preventSpaces
                     autoComplete="new-password"
                     error={errors.password}
+                    placeholder="Create a strong password"
                   />
                   <PasswordRules value={values.password} id="password-rules" />
-                  <FormInput
+                  <PasswordInput
                     id="confirmPassword"
                     label="Confirm Password"
-                    type="password"
                     value={values.confirmPassword}
                     onChange={handleChange('confirmPassword')}
                     required
                     preventSpaces
                     autoComplete="new-password"
                     error={errors.confirmPassword}
+                    placeholder="Re-enter password"
                   />
                   <PrimaryButton type="submit" isLoading={false} loadingLabel="Processing...">
                     Next →
@@ -355,6 +340,7 @@ export default function SignUpScreen({ onNavigate }) {
                     required
                     maxLength={35}
                     error={phase2Errors.shopName}
+                    placeholder="Your store name"
                   />
                   <FormTextArea
                     id="shopDescription"
@@ -363,8 +349,9 @@ export default function SignUpScreen({ onNavigate }) {
                     onChange={handlePhase2Change('shopDescription')}
                     rows={3}
                     error={phase2Errors.shopDescription}
+                    placeholder="Brief description (optional)"
                   />
-                  <FormSelect
+                  <CustomSelect
                     id="state"
                     label="State"
                     value={phase2.state}
@@ -372,6 +359,7 @@ export default function SignUpScreen({ onNavigate }) {
                     options={indianStatesOptions}
                     required
                     error={phase2Errors.state}
+                    placeholder="Select a state"
                   />
                   <FormInput
                     id="district"
@@ -380,6 +368,7 @@ export default function SignUpScreen({ onNavigate }) {
                     onChange={handlePhase2Change('district')}
                     required
                     error={phase2Errors.district}
+                    placeholder="e.g. East Godavari"
                   />
                   <FormInput
                     id="pincode"
@@ -390,8 +379,10 @@ export default function SignUpScreen({ onNavigate }) {
                     onChange={handlePhase2Change('pincode')}
                     required
                     preventSpaces
+                    numericOnly
                     maxLength={6}
                     error={phase2Errors.pincode}
+                    placeholder="6-digit pincode"
                   />
                   <FormTextArea
                     id="landmark"
@@ -401,6 +392,7 @@ export default function SignUpScreen({ onNavigate }) {
                     rows={3}
                     required
                     error={phase2Errors.landmark}
+                    placeholder="Nearby landmark"
                   />
                   <FormTextArea
                     id="streetAddress"
@@ -410,6 +402,7 @@ export default function SignUpScreen({ onNavigate }) {
                     rows={3}
                     required
                     error={phase2Errors.streetAddress}
+                    placeholder="House no., street, area"
                   />
                   <ImageUpload
                     id="shopImages"

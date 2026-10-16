@@ -1,13 +1,11 @@
-/* EyeToggleIcon.css */
-
 .eye-toggle-icon {
-  display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-  transition: var(--transition-fast);
-  color: var(--color-gold-primary);
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .eye-toggle-icon:hover {
   color: var(--color-gold-hover);
+  transform: scale(1.08);
 }

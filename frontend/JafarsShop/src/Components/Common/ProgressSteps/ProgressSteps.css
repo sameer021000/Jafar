@@ -29,6 +29,7 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   z-index: 1;
+  user-select: none;
 }
 
 .progress-steps__indicator {

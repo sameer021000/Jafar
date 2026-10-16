@@ -1,35 +1,101 @@
-// PasswordInput.jsx
-// Input field for passwords with show/hide toggle using EyeToggleIcon.
 import React, { useState } from 'react';
-import './PasswordInput.css';
 import EyeToggleIcon from '../EyeToggleIcon/EyeToggleIcon';
-import FormInput from '../FormInput/FormInput';
+import './PasswordInput.css';
 
-/**
- * PasswordInput wraps FormInput and adds eye toggle for visibility.
- * @param {object} props passed to FormInput (id, label, value, onChange, etc.)
- * @param {boolean} [props.preventSpaces] - block spaces on keydown/paste.
- */
-export default function PasswordInput({ preventSpaces = false, ...rest }) {
+function PasswordInput({
+  id,
+  label,
+  value,
+  onChange,
+  onBlur,
+  onKeyDown,
+  placeholder,
+  error,
+  required = false,
+  disabled = false,
+  autoComplete = 'new-password',
+  preventSpaces = false,
+}) {
   const [showPassword, setShowPassword] = useState(false);
+  const errorId = error ? `${id}-error` : undefined;
 
-  const toggleVisibility = () => setShowPassword((prev) => !prev);
+  const handleToggle = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const handleKeyDown = (e) => {
+    if (preventSpaces && (e.key === ' ' || e.code === 'Space')) {
+      e.preventDefault();
+    }
+    if (typeof onKeyDown === 'function') {
+      onKeyDown(e);
+    }
+  };
+
+  const handlePaste = (e) => {
+    if (preventSpaces) {
+      const pasteText = e.clipboardData.getData('text');
+      if (/\s/.test(pasteText)) {
+        e.preventDefault();
+        const sanitized = pasteText.replace(/\s+/g, '');
+        if (typeof onChange === 'function') {
+          onChange({
+            target: {
+              name: id,
+              value: (value || '') + sanitized,
+            },
+          });
+        }
+      }
+    }
+  };
 
   return (
-    <div className="password-input">
-      <FormInput
-        type={showPassword ? 'text' : 'password'}
-        preventSpaces={preventSpaces}
-        {...rest}
-      />
-      <button
-        type="button"
-        className="password-input__toggle"
-        onClick={toggleVisibility}
-        aria-label={showPassword ? 'Hide password' : 'Show password'}
-      >
-        <EyeToggleIcon visible={showPassword} />
-      </button>
+    <div className="password-input-group">
+      <label htmlFor={id} className="password-input-group__label">
+        <span>
+          {label}
+          {required && <span className="password-input-group__required-star" aria-hidden="true">*</span>}
+        </span>
+      </label>
+
+      <div className="password-input-group__input-wrapper">
+        <input
+          id={id}
+          type={showPassword ? 'text' : 'password'}
+          name={id}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
+          placeholder={placeholder}
+          disabled={disabled}
+          autoComplete={autoComplete}
+          aria-invalid={!!error}
+          aria-describedby={errorId}
+          className={`password-input-group__input ${error ? 'password-input-group__input--error' : ''}`}
+        />
+
+        <button
+          type="button"
+          className="password-input-group__toggle-btn"
+          onClick={handleToggle}
+          disabled={disabled}
+          aria-label={showPassword ? 'Hide password' : 'Show password'}
+          tabIndex={0}
+        >
+          <EyeToggleIcon isVisible={showPassword} />
+        </button>
+      </div>
+
+      {error && (
+        <div id={errorId} className="password-input-group__error-msg" role="alert">
+          {error}
+        </div>
+      )}
     </div>
   );
 }
+
+export default PasswordInput;

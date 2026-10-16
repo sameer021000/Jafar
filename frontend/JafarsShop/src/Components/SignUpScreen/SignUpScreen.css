@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: 2rem;
   background: var(--color-bg-radial);
   position: relative;
   overflow: hidden;
@@ -38,13 +38,19 @@
 
 .signup-layout {
   width: 100%;
-  max-width: 1160px;
+  max-width: 1180px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(420px, 1.1fr);
   gap: 2rem;
   align-items: stretch;
   position: relative;
   z-index: 1;
+}
+
+/* Equalise outer gutters: panels share the same internal padding scale */
+.signup-card,
+.signup-showcase {
+  box-sizing: border-box;
 }
 
 /* ---------- Showcase panel ---------- */
@@ -203,7 +209,10 @@
 
 .signup-form .primary-button {
   width: 100%;
+  min-height: 52px;
   margin-top: 0.5rem;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -295,9 +304,14 @@
 
 /* Responsive */
 @media (max-width: 960px) {
+  .signup-screen-container {
+    padding: 1.5rem 1rem;
+    align-items: flex-start;
+  }
+
   .signup-layout {
     grid-template-columns: 1fr;
-    max-width: 560px;
+    max-width: 100%;
   }
 
   /* Hide the decorative panel; header carries the brand on mobile */
@@ -305,8 +319,9 @@
     display: none;
   }
 
-  .signup-screen-container {
-    align-items: flex-start;
+  .signup-card {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
