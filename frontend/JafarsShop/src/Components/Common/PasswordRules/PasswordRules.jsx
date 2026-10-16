@@ -1,7 +1,7 @@
 // PasswordRules.jsx
 // Live password rule checklist with a strength meter.
 import React from 'react';
-import { getPasswordChecks } from '../../Utils/Validation';
+import { getPasswordChecks } from '../../../Utils/Validation';
 import './PasswordRules.css';
 
 /**
@@ -43,7 +43,7 @@ export default function PasswordRules({ value, id }) {
           <li
             key={check.id}
             className={`password-rules__item ${check.passed ? 'password-rules__item--passed' : ''}`}
-            aria-checked={check.passed}
+            data-checked={check.passed}
           >
             <span className="password-rules__icon" aria-hidden="true">
               {check.passed ? '✓' : '○'}
