@@ -13,7 +13,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Merchant Profile',
-    desc: 'Build your verified store identity on the platform',
+    desc: 'Build your verified shop identity on the platform',
   },
   {
     id: 'location',
@@ -23,7 +23,7 @@ const FEATURES = [
         <circle cx="12" cy="9" r="2.5" />
       </svg>
     ),
-    title: 'Store Location',
+    title: 'Shop Location',
     desc: 'Add address and contact details for customer reach',
   },
   {
@@ -35,8 +35,8 @@ const FEATURES = [
         <polyline points="21 15 16 10 5 21" />
       </svg>
     ),
-    title: 'Store Gallery',
-    desc: 'Upload up to 4 showcase images of your store',
+    title: 'Shop Gallery',
+    desc: 'Upload up to 4 showcase images of your shop',
   },
   {
     id: 'review',
@@ -47,7 +47,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Admin Review',
-    desc: 'Jafar team verifies and activates your listing',
+    desc: 'Admin team verifies and activates your listing',
   },
 ];
 
@@ -127,7 +127,7 @@ export default function SignUpShowcase({ phase = 1 }) {
         <h2 className="showcase__title">Jafar Works</h2>
         <p className="showcase__subtitle">Store Partner Portal</p>
         <p className="showcase__copy">
-          Register your Rolled-Gold store and manage your inventory across the Jafar platform.
+          Register your Gold-Plated Ornaments Shop and manage your inventory across the Jafar platform.
         </p>
       </header>
 
