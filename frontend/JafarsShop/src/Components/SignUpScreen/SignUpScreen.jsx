@@ -425,7 +425,7 @@ export default function SignUpScreen({ onNavigate }) {
                   {submitNotice && <p className="submit-notice">{submitNotice}</p>}
                   <div className="phase2-actions">
                     <BackButton onClick={handleBack}>Back</BackButton>
-                    <PrimaryButton type="submit" isLoading={isSubmitting} loadingLabel="Submitting…">
+                    <PrimaryButton type="submit" isLoading={isSubmitting} loadingLabel="Submitting...">
                       Submit Registration
                     </PrimaryButton>
                   </div>

@@ -33,7 +33,7 @@ export default function PrimaryButton({
     >
       {isLoading && <span className="spinner" aria-hidden="true" />}
       <span className="label">
-        {children}
+        {isLoading && loadingLabel ? loadingLabel : children}
       </span>
     </button>
   );
