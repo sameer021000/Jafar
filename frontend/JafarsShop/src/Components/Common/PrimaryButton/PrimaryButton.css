@@ -72,9 +72,9 @@
   to { transform: rotate(360deg); }
 }
 
-/* Hide label when loading (accessibility handled via aria-label) */
+/* Keep label visible when loading (matching JafarAdmin) */
 .primary-button.loading .label {
-  visibility: hidden;
+  display: inline-block;
 }
 
 /* Gentle shine on hover (cosmetic) */

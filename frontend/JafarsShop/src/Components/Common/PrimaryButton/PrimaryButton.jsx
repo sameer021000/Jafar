@@ -32,7 +32,7 @@ export default function PrimaryButton({
       aria-label={isLoading ? loadingLabel : undefined}
     >
       {isLoading && <span className="spinner" aria-hidden="true" />}
-      <span className="label" aria-hidden={isLoading}>
+      <span className="label">
         {children}
       </span>
     </button>
