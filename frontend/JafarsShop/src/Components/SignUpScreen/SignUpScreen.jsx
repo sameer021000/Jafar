@@ -325,6 +325,7 @@ export default function SignUpScreen({ onNavigate }) {
                     autoComplete="new-password"
                     error={errors.confirmPassword}
                     placeholder="Re-enter password"
+                    defaultShow={false}
                   />
                   <PrimaryButton type="submit" isLoading={false} loadingLabel="Processing...">
                     Next →
@@ -349,9 +350,10 @@ export default function SignUpScreen({ onNavigate }) {
                     label="Shop Description"
                     value={phase2.shopDescription}
                     onChange={handlePhase2Change('shopDescription')}
-                    rows={3}
+                    rows={2}
                     error={phase2Errors.shopDescription}
                     placeholder="Brief description (optional)"
+                    className="form-textarea--compact"
                   />
                   <CustomSelect
                     id="state"

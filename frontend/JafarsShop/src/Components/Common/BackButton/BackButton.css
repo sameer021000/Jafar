@@ -10,13 +10,12 @@
   gap: 0.5rem;
   padding: 0 1.125rem;
   flex-shrink: 0;
-  align-self: stretch;
 
-  /* Appearance */
-  background: transparent;
-  border: 1.5px solid var(--color-border);
+  /* Appearance — !important overrides the global button { border: none } reset */
+  background: transparent !important;
+  border: 1.5px solid #D4C9B8 !important;
   border-radius: 12px;
-  color: var(--color-text-secondary);
+  color: #484A51;
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 600;
