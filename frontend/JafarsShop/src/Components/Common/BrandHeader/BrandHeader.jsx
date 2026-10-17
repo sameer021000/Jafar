@@ -39,7 +39,7 @@ export default function BrandHeader() {
       </div>
 
       <p className="brand-header__description">
-        Register your Rolled-Gold store and manage your inventory
+        Register & manage Gold-Plated Ornaments Shop
       </p>
     </header>
   );
