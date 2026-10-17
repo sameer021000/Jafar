@@ -52,7 +52,7 @@ function PasswordInput({
   };
 
   return (
-    <div className="password-input-group">
+    <div className={`password-input-group ${error ? 'has-error' : ''}`}>
       <label htmlFor={id} className="password-input-group__label">
         <span>
           {label}
