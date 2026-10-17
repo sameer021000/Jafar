@@ -26,10 +26,10 @@
   border-radius: var(--radius-md);
   resize: vertical;
   font-size: 0.9375rem;
-  font-family: inherit;
+  font-family: var(--font-body);
   background: var(--color-surface);
   color: var(--color-text-main);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), border-left-width var(--transition-fast);
   line-height: 1.45;
 
   /* Firefox themed scrollbar */
@@ -58,16 +58,19 @@
 }
 
 .form-textarea__field::placeholder {
-  color: #A0A3AB;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  opacity: 0.75;
 }
 
 .form-textarea__field:hover:not(:disabled) {
-  border-color: #D3CEBF;
+  border-color: #BCC2D8;
 }
 
 .form-textarea__field:focus {
   outline: none;
   border-color: var(--color-gold-primary);
+  border-left: 3.5px solid var(--color-gold-primary);
   box-shadow: 0 0 0 3px var(--color-gold-glow);
 }
 

@@ -1,5 +1,8 @@
-/* SignUpScreen.css — Split-screen luxury registration layout */
+/* SignUpScreen.css — Sapphire Imperial · Split-screen luxury layout */
 
+/* ═══════════════════════════════════════════
+   1. Full-screen wrapper — deep sapphire canvas
+═══════════════════════════════════════════ */
 .signup-screen-container {
   min-height: 100vh;
   display: flex;
@@ -7,35 +10,40 @@
   justify-content: center;
   padding: 2rem;
   background: var(--color-bg-radial);
+  background-color: var(--color-bg-main);
   position: relative;
   overflow: hidden;
 }
 
-/* Ambient background glow */
+/* Ambient gold glow — top-right corner */
 .signup-screen-container::before {
   content: '';
   position: absolute;
-  top: -160px;
-  right: -160px;
-  width: 480px;
-  height: 480px;
+  top: -200px;
+  right: -200px;
+  width: 560px;
+  height: 560px;
   border-radius: var(--radius-full);
-  background: radial-gradient(circle, rgba(197, 160, 89, 0.10) 0%, rgba(197, 160, 89, 0) 70%);
+  background: radial-gradient(circle, rgba(245, 200, 66, 0.07) 0%, rgba(245, 200, 66, 0) 70%);
   pointer-events: none;
 }
 
+/* Ambient gold glow — bottom-left corner */
 .signup-screen-container::after {
   content: '';
   position: absolute;
-  bottom: -180px;
-  left: -180px;
-  width: 520px;
-  height: 520px;
+  bottom: -200px;
+  left: -200px;
+  width: 560px;
+  height: 560px;
   border-radius: var(--radius-full);
-  background: radial-gradient(circle, rgba(197, 160, 89, 0.07) 0%, rgba(197, 160, 89, 0) 70%);
+  background: radial-gradient(circle, rgba(245, 200, 66, 0.05) 0%, rgba(245, 200, 66, 0) 70%);
   pointer-events: none;
 }
 
+/* ═══════════════════════════════════════════
+   2. Grid layout
+═══════════════════════════════════════════ */
 .signup-layout {
   width: 100%;
   max-width: 1180px;
@@ -47,13 +55,14 @@
   z-index: 1;
 }
 
-/* Equalise outer gutters: panels share the same internal padding scale */
 .signup-card,
 .signup-showcase {
   box-sizing: border-box;
 }
 
-/* ---------- Form panel ---------- */
+/* ═══════════════════════════════════════════
+   3. Form card — white, lifted off dark bg
+═══════════════════════════════════════════ */
 .signup-form-panel {
   display: flex;
   align-items: stretch;
@@ -62,46 +71,48 @@
 .signup-card {
   width: 100%;
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+
+  /* Subtle gold halo border on the white card */
+  border: 1px solid rgba(245, 200, 66, 0.14);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+
+  /* Multi-layer shadow: deep navy lift + faint gold halo */
+  box-shadow:
+    0 2px 4px  rgba(5, 9, 26, 0.10),
+    0 8px 24px rgba(5, 9, 26, 0.22),
+    0 24px 64px rgba(5, 9, 26, 0.40),
+    0 0 0 1px rgba(245, 200, 66, 0.06);
+
   padding: 2rem 1.75rem;
-  animation: signupCardFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: signupCardFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
 }
 
 @keyframes signupCardFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .signup-card .brand-header {
   margin-bottom: 1.25rem;
 }
 
-/* Step transition */
+/* ═══════════════════════════════════════════
+   4. Step transition
+═══════════════════════════════════════════ */
 .signup-step {
   animation: signUpStepIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes signUpStepIn {
-  from {
-    opacity: 0;
-    transform: translateX(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
+/* ═══════════════════════════════════════════
+   5. Form layout
+═══════════════════════════════════════════ */
 .signup-form {
   display: flex;
   flex-direction: column;
@@ -114,28 +125,27 @@
   width: 100%;
   margin-top: 0.5rem;
   font-size: 1rem;
-  letter-spacing: 0.02em;
+  font-family: var(--font-sans);
+  letter-spacing: 0.04em;
 }
 
-/* PasswordRules box — add bottom breathing room before next field */
+/* ShopIdRules and PasswordRules — add bottom breathing room */
+.signup-form .shopid-rules,
 .signup-form .password-rules {
   margin-bottom: 1rem;
 }
 
-/* Confirm Password field — restore normal bottom margin */
+/* Confirm Password field spacing */
 .signup-form .password-input-group + .password-input-group {
   margin-top: 0;
   margin-bottom: 1.25rem;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .signup-card,
-  .signup-step {
-    animation: none !important;
-  }
-}
+/* ═══════════════════════════════════════════
+   6. Phase 2 action row — buttons
+═══════════════════════════════════════════ */
 
-/* Second-step action row — both buttons locked to 52px */
+/* Both buttons locked to identical 52px height */
 .phase2-actions {
   display: flex;
   gap: 0.75rem;
@@ -143,23 +153,25 @@
   margin-top: 0.75rem;
 }
 
-/* Force both buttons to identical 52px height */
 .phase2-actions > * {
   height: 52px !important;
   box-sizing: border-box;
 }
 
-/* Submit Registration button fills remaining space */
+/* Submit Registration — fills remaining width */
 .phase2-actions .primary-button {
   flex: 1;
   padding: 0 1.75rem;
   white-space: nowrap;
   font-size: 0.9375rem;
-  letter-spacing: 0.03em;
+  font-family: var(--font-sans);
+  letter-spacing: 0.04em;
   min-height: unset;
 }
 
-/* Notice */
+/* ═══════════════════════════════════════════
+   7. Supporting text elements
+═══════════════════════════════════════════ */
 .submit-notice {
   margin-top: 0.875rem;
   padding: 0.75rem 0.875rem;
@@ -169,19 +181,21 @@
   border-left: 4px solid var(--color-success);
   border-radius: var(--radius-md);
   font-size: 0.875rem;
+  font-family: var(--font-body);
   line-height: 1.4;
 }
 
-/* Sign-in link */
 .signin-link {
   margin-top: 1rem;
   font-size: 0.9rem;
   text-align: center;
   color: var(--color-text-secondary);
+  font-family: var(--font-body);
 }
-/* .link-button and .secondary-button styles live in their own component CSS files */
 
-/* Visually hidden live region for step announcements */
+/* ═══════════════════════════════════════════
+   8. Accessibility
+═══════════════════════════════════════════ */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -194,7 +208,16 @@
   border: 0;
 }
 
-/* Responsive */
+@media (prefers-reduced-motion: reduce) {
+  .signup-card,
+  .signup-step {
+    animation: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   9. Responsive
+═══════════════════════════════════════════ */
 @media (max-width: 960px) {
   .signup-screen-container {
     padding: 1.5rem 1rem;
@@ -206,14 +229,13 @@
     max-width: 100%;
   }
 
-  /* Hide the decorative panel; header carries the brand on mobile */
-  .signup-showcase {
-    display: none;
-  }
-
   .signup-card {
     width: 100%;
     max-width: 100%;
+    /* Softer shadow on mobile — no dark bg to contrast against */
+    box-shadow:
+      0 2px 8px  rgba(5, 9, 26, 0.08),
+      0 8px 24px rgba(5, 9, 26, 0.12);
   }
 }
 

@@ -51,9 +51,55 @@ const FEATURES = [
   },
 ];
 
-const STEPS = [
-  { num: 1, label: 'Your Details' },
-  { num: 2, label: 'Store Details' },
+const APPROVAL_STEPS = [
+  {
+    id: 'review',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" />
+        <line x1="16" y1="2" x2="16" y2="6" />
+        <line x1="8" y1="2" x2="8" y2="6" />
+        <line x1="3" y1="10" x2="21" y2="10" />
+        <polyline points="9 16 11 18 15 14" />
+      </svg>
+    ),
+    label: '24–48 Hour Review',
+    desc: 'Your application is reviewed within 24–48 hours of submission',
+  },
+  {
+    id: 'contact',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.39 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+    ),
+    label: 'Stay Reachable',
+    desc: 'Admin may contact you via registered phone or email — please stay available',
+  },
+  {
+    id: 'docs',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="12" y1="18" x2="12" y2="12" />
+        <line x1="9" y1="15" x2="15" y2="15" />
+      </svg>
+    ),
+    label: 'Additional Verification',
+    desc: 'Extra business documents or details may be requested if required',
+  },
+  {
+    id: 'approved',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+    ),
+    label: 'Approval & Go Live',
+    desc: 'Once approved, you receive confirmation and can begin managing your inventory',
+  },
 ];
 
 export default function SignUpShowcase({ phase = 1 }) {
@@ -81,7 +127,7 @@ export default function SignUpShowcase({ phase = 1 }) {
         <h2 className="showcase__title">Jafar Works</h2>
         <p className="showcase__subtitle">Store Partner Portal</p>
         <p className="showcase__copy">
-          Register your jewellery store and manage your presence across the Jafar platform.
+          Register your Rolled-Gold store and manage your inventory across the Jafar platform.
         </p>
       </header>
 
@@ -98,31 +144,20 @@ export default function SignUpShowcase({ phase = 1 }) {
         ))}
       </ul>
 
-      {/* ── Step progress indicator ── */}
-      <div className="showcase__steps">
-        {STEPS.map((step, idx) => {
-          const isDone = step.num < phase;
-          const isActive = step.num === phase;
-          return (
-            <React.Fragment key={step.num}>
-              <div className={`showcase__step ${isDone ? 'showcase__step--done' : ''} ${isActive ? 'showcase__step--active' : ''}`}>
-                <div className="showcase__step-dot">
-                  {isDone ? (
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="3 8 6.5 12 13 4" />
-                    </svg>
-                  ) : (
-                    <span>{step.num}</span>
-                  )}
-                </div>
-                <span className="showcase__step-label">{step.label}</span>
-              </div>
-              {idx < STEPS.length - 1 && (
-                <div className={`showcase__step-connector ${isDone ? 'showcase__step-connector--done' : ''}`} />
-              )}
-            </React.Fragment>
-          );
-        })}
+      {/* ── After-submission approval process ── */}
+      <div className="showcase__approval">
+        <p className="showcase__approval-heading">After Submission</p>
+        <ul className="showcase__approval-list">
+          {APPROVAL_STEPS.map((step) => (
+            <li key={step.id} className="showcase__approval-item">
+              <span className="showcase__approval-icon">{step.icon}</span>
+              <span className="showcase__approval-text">
+                <strong className="showcase__approval-label">{step.label}</strong>
+                <span className="showcase__approval-desc">{step.desc}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </aside>
   );

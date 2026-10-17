@@ -1,0 +1,95 @@
+/* ShopIdRules.css — mirrors PasswordRules.css */
+
+.shopid-rules {
+  margin-top: 0.5rem;
+  padding: 0.75rem 0.875rem;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+}
+
+.shopid-rules__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.shopid-rules__title {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+}
+
+.shopid-rules__status {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.shopid-rules__status--invalid {
+  color: var(--color-error);
+}
+
+.shopid-rules__status--almost {
+  color: var(--color-warning);
+}
+
+.shopid-rules__status--valid {
+  color: var(--color-success);
+}
+
+.shopid-rules__meter {
+  height: 4px;
+  width: 100%;
+  background: var(--color-border-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 0.625rem;
+}
+
+.shopid-rules__meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-error) 0%, var(--color-warning) 50%, var(--color-success) 100%);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shopid-rules__meter-fill {
+    transition: none;
+  }
+}
+
+.shopid-rules__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.shopid-rules__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.shopid-rules__item--passed {
+  color: var(--color-success);
+}
+
+.shopid-rules__icon {
+  width: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}

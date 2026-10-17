@@ -31,6 +31,7 @@ import ImageUpload from '../Common/ImageUpload/ImageUpload';
 import CustomSelect from '../Common/CustomSelect/CustomSelect';
 import SignUpShowcase from '../SignUpShowcase/SignUpShowcase';
 import PasswordRules from '../Common/PasswordRules/PasswordRules';
+import ShopIdRules from '../Common/ShopIdRules/ShopIdRules';
 import ProgressSteps from '../Common/ProgressSteps/ProgressSteps';
 
 /**
@@ -252,7 +253,7 @@ export default function SignUpScreen({ onNavigate }) {
                     preventSpaces
                     alphaOnly
                     error={errors.firstName}
-                    placeholder="Enter first name (letters only)"
+                    placeholder="Enter first name"
                   />
                   <FormInput
                     id="middleName"
@@ -262,7 +263,7 @@ export default function SignUpScreen({ onNavigate }) {
                     preventSpaces
                     alphaOnly
                     error={errors.middleName}
-                    placeholder="Optional middle name"
+                    placeholder="Enter middle name"
                   />
                   <FormInput
                     id="lastName"
@@ -301,8 +302,9 @@ export default function SignUpScreen({ onNavigate }) {
                     required
                     preventSpaces
                     error={errors.shopId}
-                    placeholder="Minimum 5 chars, letters & digits"
+                    placeholder="e.g. MyShop01"
                   />
+                  <ShopIdRules value={values.shopId} id="shopid-rules" />
                   <PasswordInput
                     id="password"
                     label="Create Password"
@@ -343,7 +345,7 @@ export default function SignUpScreen({ onNavigate }) {
                     required
                     maxLength={35}
                     error={phase2Errors.shopName}
-                    placeholder="Your store name"
+                    placeholder="Enter shop name"
                   />
                   <FormTextArea
                     id="shopDescription"
@@ -352,7 +354,7 @@ export default function SignUpScreen({ onNavigate }) {
                     onChange={handlePhase2Change('shopDescription')}
                     rows={2}
                     error={phase2Errors.shopDescription}
-                    placeholder="Brief description (optional)"
+                    placeholder="Brief description of your store"
                     className="form-textarea--compact"
                   />
                   <CustomSelect
@@ -372,7 +374,7 @@ export default function SignUpScreen({ onNavigate }) {
                     onChange={handlePhase2Change('district')}
                     required
                     error={phase2Errors.district}
-                    placeholder="e.g. East Godavari"
+                    placeholder="Enter district"
                   />
                   <FormInput
                     id="pincode"

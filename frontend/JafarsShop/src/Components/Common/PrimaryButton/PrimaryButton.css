@@ -11,10 +11,10 @@
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--color-text-inverse);
-  background: linear-gradient(135deg, var(--color-gold-primary) 0%, var(--color-gold-hover) 100%);
+  background: linear-gradient(135deg, #F5C842 0%, #E8A820 100%);
   border: none;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 14px rgba(245, 200, 66, 0.25), var(--shadow-sm);
   cursor: pointer;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
   position: relative;
@@ -22,14 +22,15 @@
 }
 
 .primary-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-  filter: brightness(1.03);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #FFD966 0%, #F5C842 100%);
+  box-shadow: 0 6px 20px rgba(245, 200, 66, 0.40), 0 0 0 3px rgba(245, 200, 66, 0.20);
+  filter: brightness(1.02);
 }
 
 .primary-button:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(245, 200, 66, 0.30);
 }
 
 .primary-button:focus-visible {

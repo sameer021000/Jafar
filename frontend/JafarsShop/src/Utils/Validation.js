@@ -43,9 +43,22 @@ export const validateShopId = (v) => {
     return { isValid: false, error: 'Shop ID must be at least 5 characters' };
   if (!/[A-Za-z]/.test(v) || !/\d/.test(v))
     return { isValid: false, error: 'Shop ID must contain at least one letter and one digit' };
-  if (/[^A-Za-z0-9]/.test(v))
-    return { isValid: false, error: 'Shop ID may contain only letters and digits' };
+  if (/[^A-Za-z0-9_-]/.test(v))
+    return { isValid: false, error: 'Shop ID may contain only letters, digits, hyphens, and underscores' };
   return { isValid: true, error: null };
+};
+
+// 6b. Shop ID live checks — exposed for ShopIdRules component.
+export const getShopIdChecks = (v) => {
+  const value = v == null ? '' : String(v);
+  return [
+    { id: 'minLen',   label: 'At least 5 characters long',                    passed: value.length >= 5 },
+    { id: 'maxLen',   label: 'No more than 20 characters',                    passed: value.length > 0 && value.length <= 20 },
+    { id: 'hasLetter',label: 'Contains at least one letter (A–Z)',             passed: /[A-Za-z]/.test(value) },
+    { id: 'hasDigit', label: 'Contains at least one digit (0–9)',              passed: /\d/.test(value) },
+    { id: 'noSpaces', label: 'No spaces allowed',                              passed: value.length > 0 && !/\s/.test(value) },
+    { id: 'chars',    label: 'Only letters, digits, hyphens ( - ) or underscores ( _ )', passed: value.length > 0 && /^[A-Za-z0-9_-]+$/.test(value) },
+  ];
 };
 
 // 7. Password rules exposed for live UI feedback (Phase 2).
@@ -142,6 +155,7 @@ const Validation = {
   validatePhone,
   validateEmail,
   validateShopId,
+  getShopIdChecks,
   validatePassword,
   getPasswordChecks,
   validateConfirmPassword,

@@ -9,13 +9,14 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0 1.125rem;
+  height: 52px;
   flex-shrink: 0;
 
   /* Appearance — !important overrides the global button { border: none } reset */
   background: transparent !important;
-  border: 1.5px solid #D4C9B8 !important;
+  border: 1.5px solid var(--color-border) !important;
   border-radius: 12px;
-  color: #484A51;
+  color: var(--color-text-main);
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 600;
@@ -60,10 +61,10 @@
 
 /* ---- Hover state ---- */
 .back-button:hover {
-  border-color: var(--color-gold-primary);
+  border-color: var(--color-gold-primary) !important;
   color: var(--color-gold-primary);
-  background: rgba(197, 160, 89, 0.06);
-  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.08);
+  background: rgba(245, 200, 66, 0.06) !important;
+  box-shadow: 0 0 0 3px rgba(245, 200, 66, 0.15);
 }
 
 .back-button:hover .back-button__track {

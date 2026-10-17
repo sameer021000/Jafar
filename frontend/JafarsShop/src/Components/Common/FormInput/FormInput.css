@@ -26,15 +26,16 @@
   border-radius: var(--radius-md);
   padding: 0 0.875rem;
   height: 48px;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), border-left-width var(--transition-fast);
 }
 
 .form-input__wrapper:hover {
-  border-color: #D3CEBF;
+  border-color: #BCC2D8;
 }
 
 .form-input__wrapper:focus-within {
   border-color: var(--color-gold-primary);
+  border-left: 3.5px solid var(--color-gold-primary);
   box-shadow: 0 0 0 3px var(--color-gold-glow);
 }
 
@@ -50,6 +51,7 @@
   flex: 1;
   border: none;
   outline: none;
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   background: transparent;
   color: var(--color-text-main);
@@ -58,7 +60,9 @@
 }
 
 .form-input__field::placeholder {
-  color: #A0A3AB;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  opacity: 0.75;
 }
 
 .form-input__wrapper:has(.form-input__field:disabled) {

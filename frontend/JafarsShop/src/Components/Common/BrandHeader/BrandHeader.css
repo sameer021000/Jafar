@@ -14,9 +14,9 @@
   width: 68px;
   height: 68px;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, #FFF9EE 0%, #F5E8CE 100%);
+  background: linear-gradient(135deg, #FFFDF7 0%, #FDF3DB 100%);
   border: 1.5px solid var(--color-gold-border);
-  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.18);
+  box-shadow: 0 4px 18px rgba(245, 200, 66, 0.22);
   margin-bottom: 1rem;
   transition: transform var(--transition-normal);
 }
@@ -40,7 +40,7 @@
   line-height: 1.2;
   margin-bottom: 0.25rem;
   text-transform: uppercase;
-  background: linear-gradient(135deg, #1D1E20 30%, #5B4823 100%);
+  background: linear-gradient(135deg, #1A1C2E 30%, #6E5316 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -55,9 +55,9 @@
 
 .brand-header__accent-line {
   width: 24px;
-  height: 1px;
+  height: 1.5px;
   background-color: var(--color-gold-primary);
-  opacity: 0.6;
+  opacity: 0.75;
 }
 
 .brand-header__subtitle {
