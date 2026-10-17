@@ -31,11 +31,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  outline: none;
+}
+
+.image-upload__dropzone * {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .image-upload__dropzone:hover {
   border-color: var(--color-gold-primary);
   background: var(--color-surface-muted);
+}
+
+.image-upload__dropzone:focus {
+  outline: none;
 }
 
 .image-upload__dropzone:focus-visible {

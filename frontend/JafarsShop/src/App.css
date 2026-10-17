@@ -115,15 +115,22 @@ body {
 }
 
 /* ── Interactive Element Defaults ── */
-button, input, textarea, select {
+button, input, textarea, select, a, [role="button"], [tabindex] {
   font: inherit;
   color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
   cursor: pointer;
   border: none;
   background: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ── Reduced Motion ── */

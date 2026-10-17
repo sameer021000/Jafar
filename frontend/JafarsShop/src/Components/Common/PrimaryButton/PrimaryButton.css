@@ -5,6 +5,9 @@
   align-items: center;
   justify-content: center;
   min-height: 48px;
+  box-sizing: border-box;
+  margin: 0;
+  vertical-align: middle;
   padding: 0 1.5rem;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
@@ -19,6 +22,9 @@
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
   position: relative;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  outline: none;
 }
 
 .primary-button:hover:not(:disabled) {

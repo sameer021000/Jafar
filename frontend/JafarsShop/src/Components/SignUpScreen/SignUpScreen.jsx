@@ -373,6 +373,7 @@ export default function SignUpScreen({ onNavigate }) {
                     value={phase2.district}
                     onChange={handlePhase2Change('district')}
                     required
+                    noNumbers
                     error={phase2Errors.district}
                     placeholder="Enter district"
                   />

@@ -39,7 +39,7 @@ export default function BrandHeader() {
       </div>
 
       <p className="brand-header__description">
-        Register your jewellery store and manage your Jafar presence
+        Register your Rolled-Gold store and manage your inventory
       </p>
     </header>
   );

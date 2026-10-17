@@ -7,9 +7,13 @@
   /* Layout */
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0 1.125rem;
   height: 52px;
+  box-sizing: border-box;
+  margin: 0;
+  vertical-align: middle;
   flex-shrink: 0;
 
   /* Appearance — !important overrides the global button { border: none } reset */

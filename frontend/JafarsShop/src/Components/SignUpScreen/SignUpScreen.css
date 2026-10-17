@@ -145,17 +145,21 @@
    6. Phase 2 action row — buttons
 ═══════════════════════════════════════════ */
 
-/* Both buttons locked to identical 52px height */
+/* Both buttons locked to identical 52px height and aligned on the same horizontal line */
 .phase2-actions {
   display: flex;
   gap: 0.75rem;
-  align-items: flex-start;
+  align-items: center;
   margin-top: 0.75rem;
+  width: 100%;
 }
 
 .phase2-actions > * {
   height: 52px !important;
-  box-sizing: border-box;
+  max-height: 52px !important;
+  min-height: 52px !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
 }
 
 /* Submit Registration — fills remaining width */
@@ -166,7 +170,9 @@
   font-size: 0.9375rem;
   font-family: var(--font-sans);
   letter-spacing: 0.04em;
-  min-height: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ═══════════════════════════════════════════

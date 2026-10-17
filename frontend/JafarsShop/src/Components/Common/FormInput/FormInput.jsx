@@ -37,6 +37,7 @@ export default function FormInput({
   preventSpaces = false,
   alphaOnly = false,
   numericOnly = false,
+  noNumbers = false,
   maxLength,
   inputMode,
   prefix,
@@ -57,6 +58,10 @@ export default function FormInput({
       e.preventDefault();
       return;
     }
+    if (noNumbers && !CONTROL_KEYS.includes(e.key) && /^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+      return;
+    }
     // Forward to external handler (e.g. PhoneInput's digit-only enforcement)
     if (typeof externalKeyDown === 'function') {
       externalKeyDown(e);
@@ -64,13 +69,14 @@ export default function FormInput({
   };
 
   const handleChange = (e) => {
-    if (!alphaOnly && !numericOnly && !preventSpaces) {
+    if (!alphaOnly && !numericOnly && !preventSpaces && !noNumbers) {
       if (typeof onChange === 'function') onChange(e);
       return;
     }
     let val = e.target.value;
     if (alphaOnly) val = val.replace(/[^A-Za-z]/g, '');
     if (numericOnly) val = val.replace(/\D/g, '');
+    if (noNumbers) val = val.replace(/[0-9]/g, '');
     if (preventSpaces) val = val.replace(/\s/g, '');
     if (typeof onChange === 'function') {
       onChange({ ...e, target: { ...e.target, value: val } });
@@ -83,6 +89,7 @@ export default function FormInput({
 
     if (numericOnly) sanitized = sanitized.replace(/\D/g, '');
     if (alphaOnly) sanitized = sanitized.replace(/[^A-Za-z]/g, '');
+    if (noNumbers) sanitized = sanitized.replace(/[0-9]/g, '');
     if (preventSpaces) sanitized = sanitized.replace(/\s/g, '');
 
     if (sanitized !== raw) {
