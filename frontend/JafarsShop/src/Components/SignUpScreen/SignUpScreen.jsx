@@ -237,7 +237,7 @@ export default function SignUpScreen({ onNavigate }) {
               Step {phase} of 2: {phase === 1 ? 'Your details' : 'Store details'}
             </span>
             <BrandHeader />
-            <ProgressSteps steps={progressSteps} current={phase - 1} />
+            <ProgressSteps steps={progressSteps} current={submitNotice ? progressSteps.length : phase - 1} />
 
             <div className="signup-step" key={phase}>
               {phase === 1 ? (

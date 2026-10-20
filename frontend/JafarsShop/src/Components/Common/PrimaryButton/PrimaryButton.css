@@ -58,12 +58,40 @@
   pointer-events: none;
 }
 
+/*
+  Anchor label — always rendered, holds the button's intrinsic width.
+  Hidden (not removed) during loading so the button never changes size.
+*/
+.primary-button .label--anchor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.primary-button.loading .label--anchor {
+  visibility: hidden; /* keeps its space; overlay sits on top */
+}
+
+/*
+  Loading overlay — absolutely centred; contains spinner + text.
+  Only rendered when isLoading=true.
+*/
+.primary-button .label--loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
 .primary-button .spinner {
   width: 1rem;
   height: 1rem;
   flex-shrink: 0;
-  margin-right: 0.5rem;
-  border: 2.5px solid rgba(26, 28, 46, 0.35);
+  border: 2.5px solid rgba(26, 28, 46, 0.30);
   border-top-color: #1A1C2E;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -71,11 +99,6 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-
-/* Keep label visible when loading (matching JafarAdmin) */
-.primary-button.loading .label {
-  display: inline-block;
 }
 
 /* Gentle shine on hover (cosmetic) */

@@ -11,7 +11,7 @@ import './PrimaryButton.css';
  * @param {boolean} [props.disabled] - disable button
  * @param {function} [props.onClick] - click handler
  * @param {string} [props.type='button'] - button type attribute
- * @param {string} [props.loadingLabel='Processing...'] - aria‑label while loading
+ * @param {string} [props.loadingLabel='Processing...'] - label shown while loading
  */
 export default function PrimaryButton({
   children,
@@ -31,10 +31,22 @@ export default function PrimaryButton({
       aria-busy={isLoading}
       aria-label={isLoading ? loadingLabel : undefined}
     >
-      {isLoading && <span className="spinner" aria-hidden="true" />}
-      <span className="label">
-        {isLoading && loadingLabel ? loadingLabel : children}
+      {/*
+        Anchor span: always rendered with the normal children text.
+        During loading it is invisible (visibility:hidden) but still occupies
+        its full width — this prevents ANY layout shift in the parent card.
+      */}
+      <span className="label label--anchor" aria-hidden={isLoading ? 'true' : undefined}>
+        {children}
       </span>
+
+      {/* Loading overlay — absolutely centred on top of the anchor */}
+      {isLoading && (
+        <span className="label label--loading" aria-hidden="true">
+          <span className="spinner" />
+          {loadingLabel}
+        </span>
+      )}
     </button>
   );
 }

@@ -7,29 +7,20 @@ const isEmpty = (value) => !value || String(value).trim() === '';
 
 
 
-// 1. First name – required, letters only, single word, no spaces.
-export const validateFirstName = (v) => {
-  if (isEmpty(v)) return { isValid: false, error: 'First name is required' };
-  return /^[A-Za-z]+$/.test(v)
-    ? { isValid: true, error: null }
-    : { isValid: false, error: 'First name must contain only letters' };
-};
+// 1. First name – required. (alphaOnly input prop blocks non-letters at keystroke level)
+export const validateFirstName = (v) =>
+  isEmpty(v)
+    ? { isValid: false, error: 'First name is required' }
+    : { isValid: true, error: null };
 
-// 2. Middle name – optional, if present letters only, single word.
-export const validateMiddleName = (v) => {
-  if (isEmpty(v)) return { isValid: true, error: null };
-  return /^[A-Za-z]+$/.test(v)
-    ? { isValid: true, error: null }
-    : { isValid: false, error: 'Middle name must contain only letters' };
-};
+// 2. Middle name – optional.
+export const validateMiddleName = (v) => ({ isValid: true, error: null });
 
-// 3. Last name – same as first.
-export const validateLastName = (v) => {
-  if (isEmpty(v)) return { isValid: false, error: 'Last name is required' };
-  return /^[A-Za-z]+$/.test(v)
-    ? { isValid: true, error: null }
-    : { isValid: false, error: 'Last name must contain only letters' };
-};
+// 3. Last name – required.
+export const validateLastName = (v) =>
+  isEmpty(v)
+    ? { isValid: false, error: 'Last name is required' }
+    : { isValid: true, error: null };
 
 // 4. Phone – required, exactly 10 digits.
 export const validatePhone = (v) => {
