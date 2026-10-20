@@ -94,6 +94,25 @@
   box-shadow: var(--shadow-lg);
   animation: customSelectMenuIn 0.18s ease;
   -webkit-tap-highlight-color: transparent;
+
+  /* Themed scrollbar — Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 200, 66, 0.45) transparent;
+}
+
+/* Themed scrollbar — WebKit (Chrome, Safari, Edge) */
+.custom-select__menu::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-select__menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-select__menu::-webkit-scrollbar-thumb {
+  background: rgba(245, 200, 66, 0.45);
+  border-radius: 9999px;
+}
+.custom-select__menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 200, 66, 0.7);
 }
 
 .custom-select__option {

@@ -60,7 +60,8 @@
 }
 
 .progress-steps__step--active .progress-steps__label {
-  color: var(--color-gold-hover);
+  color: var(--color-gold-primary);
+  font-weight: 700;
 }
 
 .progress-steps__step--completed .progress-steps__label {

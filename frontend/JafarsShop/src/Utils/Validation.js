@@ -5,41 +5,52 @@
  */
 const isEmpty = (value) => !value || String(value).trim() === '';
 
-/**
- * Generic regex validator that returns { isValid, error }.
- */
-const testRegex = (value, regex, errorMsg) => {
-  if (isEmpty(value)) return { isValid: false, error: errorMsg };
-  return regex.test(value)
-    ? { isValid: true, error: null }
-    : { isValid: false, error: errorMsg };
-};
+
 
 // 1. First name – required, letters only, single word, no spaces.
-export const validateFirstName = (v) =>
-  testRegex(v, /^[A-Za-z]+$/, 'First name must contain only letters and no spaces');
+export const validateFirstName = (v) => {
+  if (isEmpty(v)) return { isValid: false, error: 'First name is required' };
+  return /^[A-Za-z]+$/.test(v)
+    ? { isValid: true, error: null }
+    : { isValid: false, error: 'First name must contain only letters' };
+};
 
 // 2. Middle name – optional, if present letters only, single word.
 export const validateMiddleName = (v) => {
   if (isEmpty(v)) return { isValid: true, error: null };
-  return testRegex(v, /^[A-Za-z]+$/, 'Middle name must contain only letters and no spaces');
+  return /^[A-Za-z]+$/.test(v)
+    ? { isValid: true, error: null }
+    : { isValid: false, error: 'Middle name must contain only letters' };
 };
 
 // 3. Last name – same as first.
-export const validateLastName = (v) =>
-  testRegex(v, /^[A-Za-z]+$/, 'Last name must contain only letters and no spaces');
+export const validateLastName = (v) => {
+  if (isEmpty(v)) return { isValid: false, error: 'Last name is required' };
+  return /^[A-Za-z]+$/.test(v)
+    ? { isValid: true, error: null }
+    : { isValid: false, error: 'Last name must contain only letters' };
+};
 
 // 4. Phone – required, exactly 10 digits.
-export const validatePhone = (v) =>
-  testRegex(v, /^\d{10}$/, 'Phone number must be exactly 10 digits');
+export const validatePhone = (v) => {
+  if (isEmpty(v)) return { isValid: false, error: 'Phone number is required' };
+  return /^\d{10}$/.test(v)
+    ? { isValid: true, error: null }
+    : { isValid: false, error: 'Phone number must be exactly 10 digits' };
+};
 
 // 5. Email – basic email pattern.
-export const validateEmail = (v) =>
-  testRegex(v, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Invalid email address');
+export const validateEmail = (v) => {
+  if (isEmpty(v)) return { isValid: false, error: 'Mail ID is required' };
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+    ? { isValid: true, error: null }
+    : { isValid: false, error: 'Enter a valid email address' };
+};
 
 // 6. Shop ID – min 5 chars, at least one letter and one digit, alphanumeric only.
 export const validateShopId = (v) => {
-  if (isEmpty(v) || v.length < 5)
+  if (isEmpty(v)) return { isValid: false, error: 'Shop ID is required' };
+  if (v.length < 5)
     return { isValid: false, error: 'Shop ID must be at least 5 characters' };
   if (!/[A-Za-z]/.test(v) || !/\d/.test(v))
     return { isValid: false, error: 'Shop ID must contain at least one letter and one digit' };
@@ -130,8 +141,12 @@ export const validateDistrict = (v) => {
 };
 
 // 13. Pincode – exactly 6 digits.
-export const validatePincode = (v) =>
-  testRegex(v, /^\d{6}$/, 'Pincode must be exactly 6 digits');
+export const validatePincode = (v) => {
+  if (isEmpty(v)) return { isValid: false, error: 'Pincode is required' };
+  return /^\d{6}$/.test(v)
+    ? { isValid: true, error: null }
+    : { isValid: false, error: 'Pincode must be exactly 6 digits' };
+};
 
 // 14. Landmark – required non‑empty after trim.
 export const validateLandmark = (v) =>
